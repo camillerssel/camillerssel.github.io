@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT — CAMILLE ROUSSEL</title>
     
+    <!-- Importation de la police Outfit via Google Fonts (Poids 300 et 600) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
@@ -29,7 +30,7 @@
         }
 
         html {
-            scroll-behavior: smooth; /* Permet un retour en haut de page fluide */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -71,11 +72,10 @@
             font-weight: 600 !important;
         }
 
-        /* Nouvelle classe Outfit Light en bas de casse */
         .typo-outfit-light {
             font-family: 'Outfit', sans-serif;
             font-weight: 300 !important;
-            text-transform: none; /* Désactive les majuscules forcées */
+            text-transform: none; /* Bas de casse */
         }
 
         /* Barre de navigation */
@@ -102,20 +102,20 @@
             letter-spacing: 1.5px;
         }
 
-        /* Section Profil (Haut) */
+        /* --- GRILLE PRINCIPALE DE PROFIL (Alignée sur 4 colonnes) --- */
         .profile-section {
             display: grid;
-            grid-template-columns: 1.2fr 2fr;
-            gap: 80px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px 30px;
             align-items: flex-start;
             margin-top: 20px;
         }
 
-        /* Conteneur de la photo */
         .profile-image-container {
+            grid-column: 1 / span 2; /* Occupe les colonnes 1 et 2 */
             width: 100%;
             aspect-ratio: 1 / 1.1; 
-            background-color: #000000; /* Devient le carré noir par défaut */
+            background-color: #000000;
             overflow: hidden;
         }
 
@@ -126,10 +126,10 @@
         }
 
         .profile-text {
+            grid-column: 3 / span 2; /* Débute à la colonne 3 (aligné avec CosaVostra) */
             display: flex;
             flex-direction: column;
             gap: 25px;
-            max-width: 550px;
         }
 
         .profile-text h1 {
@@ -137,17 +137,17 @@
             font-weight: normal;
         }
 
-        /* Style spécifique pour la description en bas de casse */
         .profile-text p {
             font-size: 1.15rem;
             line-height: 1.5;
-            text-transform: none; /* Désactive les majuscules pour passer en bas de casse */
+            text-transform: none; /* Bas de casse */
         }
 
-        /* Structure des sections (Expériences et Éducations) */
+        /* --- GRILLE PRINCIPALE DES PARCOURS (4 colonnes à plat) --- */
         .resume-section {
             display: grid;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px 30px;
             border-top: 1px solid #2B1F1D;
             padding-top: 40px;
             padding-bottom: 20px;
@@ -159,16 +159,19 @@
         }
 
         .section-title {
+            grid-column: 1;
             font-size: 1.1rem;
             letter-spacing: 1px;
             font-weight: normal;
         }
 
-        /* Grilles internes (3 colonnes) */
-        .resume-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px 30px;
+        /* Gestion de l'occupation verticale du titre selon le nombre de lignes de la grille */
+        .experience-section .section-title {
+            grid-row: 1 / span 3;
+        }
+
+        .education-section .section-title {
+            grid-row: 1 / span 1;
         }
 
         .grid-item {
@@ -187,11 +190,6 @@
             font-size: 1.1rem;
             letter-spacing: 0.5px;
             font-weight: normal;
-        }
-
-        .grid-item p {
-            font-size: 0.95rem;
-            opacity: 0.9;
         }
 
         /* --- BOUTON BACK TO TOP --- */
@@ -228,7 +226,7 @@
             transform: translateY(-5px);
         }
 
-        /* --- BOUTONS EN BAS DE PAGE (LINKEDIN) --- */
+        /* --- BOUTONS EN BAS DE PAGE --- */
         .cta-btn {
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -253,7 +251,6 @@
             transform: translateX(6px); 
         }
 
-        /* --- SECTION CONTACT (INTERLIGNAGE 60PX) --- */
         .contact-section {
             text-align: center;
             display: flex;
@@ -295,8 +292,10 @@
             body { padding: 30px 20px 30px 20px; gap: 40px; }
             header { flex-direction: column; gap: 20px; }
             .profile-section { grid-template-columns: 1fr; gap: 40px; }
-            .resume-section { grid-template-columns: 1fr; gap: 20px; }
-            .resume-grid { grid-template-columns: 1fr; gap: 30px; }
+            .profile-image-container { grid-column: auto; }
+            .profile-text { grid-column: auto; }
+            .resume-section { grid-template-columns: 1fr; gap: 30px; }
+            .section-title { grid-column: auto; grid-row: auto !important; }
             .contact-email { font-size: 1.8rem; line-height: 40px; }
             .contact-section h2 { line-height: 40px; }
             footer { flex-direction: column; gap: 10px; text-align: center; }
@@ -305,6 +304,7 @@
 </head>
 <body id="top">
 
+    <!-- Barre de navigation -->
     <header>
         <a href="index.html" class="logo">
             <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
@@ -318,6 +318,7 @@
         </nav>
     </header>
 
+    <!-- Section Présentation & Photo (Le texte est calé sur la 3ème colonne globale) -->
     <section class="profile-section">
         <div class="profile-image-container">
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
@@ -338,81 +339,89 @@
         </div>
     </section>
 
-    <section class="resume-section">
+    <!-- Section Expériences (Grille à plat alignée sur le profil) -->
+    <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
-        <div class="resume-grid">
-            <div class="grid-item">
-                <span class="date typo-outfit">2023 - TODAY</span>
-                <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
-                <p class="typo-outfit-light">Art Director</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">2021 - 2023</span>
-                <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
-                <p class="typo-outfit-light">Art Director</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">2020 - 2021</span>
-                <h3 class="item-title typo-coconat">BETC</h3>
-                <p class="typo-outfit-light">Assistant AD</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">JUNE - SEPT 2020</span>
-                <h3 class="item-title typo-coconat">DRAGON ROUGE</h3>
-                <p class="typo-outfit-light">Assistant AD (Internship)</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">APRIL - AUGUST 2019</span>
-                <h3 class="item-title typo-coconat">BUILD IN AMSTERDAM</h3>
-                <p class="typo-outfit-light">Assistant AD (Internship)</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">MAY - AUGUST 2017</span>
-                <h3 class="item-title typo-coconat">LE FIGARO</h3>
-                <p class="typo-outfit-light">UX/UI Designer (Internship)</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">2015</span>
-                <h3 class="item-title typo-coconat">STUDIO BLEU MARINE</h3>
-                <p class="typo-outfit-light">Set Assistant (Internship)</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">MARCH - APRIL 2014</span>
-                <h3 class="item-title typo-coconat">DOCS AD HOC</h3>
-                <p class="typo-outfit-light">Photo retouching (Internship)</p>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">MARCH 2013</span>
-                <h3 class="item-title typo-coconat">STUDIO BERGOEND</h3>
-                <p class="typo-outfit-light">Set Assistant (Internship)</p>
-            </div>
+        
+        <!-- Ligne 1 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2023 - TODAY</span>
+            <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
+            <p class="typo-outfit-light">Art Director</p>
+        </div>
+        <!-- TEXTE ALIGNÉ ICI -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2021 - 2023</span>
+            <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
+            <p class="typo-outfit-light">Art Director</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">2020 - 2021</span>
+            <h3 class="item-title typo-coconat">BETC</h3>
+            <p class="typo-outfit-light">Assistant AD</p>
+        </div>
+
+        <!-- Ligne 2 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">JUNE - SEPT 2020</span>
+            <h3 class="item-title typo-coconat">DRAGON ROUGE</h3>
+            <p class="typo-outfit-light">Assistant AD (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">APRIL - AUGUST 2019</span>
+            <h3 class="item-title typo-coconat">BUILD IN AMSTERDAM</h3>
+            <p class="typo-outfit-light">Assistant AD (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MAY - AUGUST 2017</span>
+            <h3 class="item-title typo-coconat">LE FIGARO</h3>
+            <p class="typo-outfit-light">UX/UI Designer (Internship)</p>
+        </div>
+
+        <!-- Ligne 3 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2015</span>
+            <h3 class="item-title typo-coconat">STUDIO BLEU MARINE</h3>
+            <p class="typo-outfit-light">Set Assistant (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MARCH - APRIL 2014</span>
+            <h3 class="item-title typo-coconat">DOCS AD HOC</h3>
+            <p class="typo-outfit-light">Photo retouching (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MARCH 2013</span>
+            <h3 class="item-title typo-coconat">STUDIO BERGOEND</h3>
+            <p class="typo-outfit-light">Set Assistant (Internship)</p>
         </div>
     </section>
 
-    <section class="resume-section border-bottom">
+    <!-- Section Éducations -->
+    <section class="resume-section education-section border-bottom">
         <h2 class="section-title typo-coconat">EDUCATIONS</h2>
-        <div class="resume-grid">
-            <div class="grid-item">
-                <span class="date typo-outfit">2018 - 2020</span>
-                <h3 class="item-title typo-coconat">MASTER'S DEGREE<br>IN ART DIRECTION</h3>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">2016 - 2020</span>
-                <h3 class="item-title typo-coconat">BACHELOR<br>IN GRAPHIC DESIGN</h3>
-            </div>
-            <div class="grid-item">
-                <span class="date typo-outfit">2012 - 2015</span>
-                <h3 class="item-title typo-coconat">HIGH SCHOOL<br>PHOTOGRAPHY</h3>
-            </div>
+        
+        <div class="grid-item">
+            <span class="date typo-outfit">2018 - 2020</span>
+            <h3 class="item-title typo-coconat">MASTER'S DEGREE<br>IN ART DIRECTION</h3>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">2016 - 2020</span>
+            <h3 class="item-title typo-coconat">BACHELOR<br>IN GRAPHIC DESIGN</h3>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">2012 - 2015</span>
+            <h3 class="item-title typo-coconat">HIGH SCHOOL<br>PHOTOGRAPHY</h3>
         </div>
     </section>
 
+    <!-- Bouton Retour en haut -->
     <div class="back-to-top-container">
         <a href="#top" class="back-to-top-btn typo-outfit">
             BACK TO TOP <span class="arrow-up">&uarr;</span>
         </a>
     </div>
 
+    <!-- Section Contact -->
     <section class="contact-section">
         <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
         <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
@@ -422,6 +431,7 @@
         </a>
     </section>
 
+    <!-- Mentions de bas de page -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
