@@ -38,7 +38,7 @@
             background-color: #FAF6F0; /* Fond crème */
             color: rgb(43, 31, 29); /* Couleur marron foncé RVB 43, 31, 29 */
             font-family: 'Coconat', serif;
-            padding: 40px 60px 30px 60px; /* 30px de padding en bas de page */
+            padding: 40px 60px 0px 60px; /* Le padding bas est géré par le footer pour plus de précision */
             display: flex;
             flex-direction: column;
             gap: 60px;
@@ -270,18 +270,19 @@
             transform: translateX(6px); 
         }
 
-        /* Footer (Espace de 30px en dessous géré par le padding du body) */
+        /* Footer (Avec espace de 30px strict en dessous du texte) */
         footer {
             display: flex;
             justify-content: space-between;
             font-size: 0.65rem;
             letter-spacing: 0.5px;
             padding-top: 20px;
+            padding-bottom: 30px; /* Crée l'espace de 30px après les textes */
         }
 
         /* Responsive Mobile */
         @media (max-width: 900px) {
-            body { padding: 30px 20px 30px 20px; gap: 40px; }
+            body { padding: 30px 20px 0px 20px; gap: 40px; }
             header { flex-direction: column; gap: 20px; }
             .profile-section { grid-template-columns: 1fr; gap: 40px; }
             .profile-image-container { grid-column: auto; width: 100%; height: auto; aspect-ratio: 445/530; justify-self: center; }
@@ -290,7 +291,7 @@
             .section-title { grid-column: auto; grid-row: auto !important; }
             .contact-email { font-size: 1.8rem; line-height: 40px; }
             .contact-section h2 { line-height: 40px; }
-            footer { flex-direction: column; gap: 10px; text-align: center; }
+            footer { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 30px; }
         }
     </style>
 </head>
@@ -427,7 +428,7 @@
         </a>
     </section>
 
-    <!-- Mentions de bas de page -->
+    <!-- Mentions de bas de page (Avec padding-bottom de 30px intégré) -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
