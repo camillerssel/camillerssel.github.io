@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT — CAMILLE ROUSSEL</title>
     
+    <!-- Importation de la police Outfit via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
 
     <style>
+        /* Déclaration de ta police locale Coconat */
         @font-face {
             font-family: 'Coconat';
             src: url('Coconat-Regular.woff2') format('woff2'); 
@@ -18,68 +20,288 @@
             font-display: swap;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        html { scroll-behavior: smooth; background-color: #FAF6F0; }
-        body { background-color: #FAF6F0; color: rgb(43, 31, 29); font-family: 'Coconat', serif; padding: 40px 60px 0px 60px; display: flex; flex-direction: column; gap: 60px; text-transform: uppercase; }
-        
-        a { text-decoration: none; color: inherit; transition: opacity 0.3s ease; }
-        a:hover { opacity: 0.6; }
-        .underline { text-decoration: underline; text-underline-offset: 4px; }
+        /* Styles Globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
 
-        .typo-coconat { font-family: 'Coconat', serif; font-weight: 400 !important; }
-        .typo-outfit { font-family: 'Outfit', sans-serif; font-weight: 600 !important; }
-        .typo-outfit-light { font-family: 'Outfit', sans-serif; font-weight: 300 !important; text-transform: none; }
+        html {
+            scroll-behavior: smooth;
+            background-color: #FAF6F0;
+        }
 
-        header { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .logo { font-size: 1.2rem; letter-spacing: 1px; }
-        nav ul { display: flex; list-style: none; gap: 35px; }
-        nav ul li a { font-size: 0.85rem; letter-spacing: 1.5px; }
+        body {
+            background-color: #FAF6F0; /* Fond crème */
+            color: rgb(43, 31, 29); /* Couleur marron foncé RVB 43, 31, 29 */
+            font-family: 'Coconat', serif;
+            padding: 40px 60px 0px 60px; /* Le padding bas est géré par le footer pour plus de précision */
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            text-transform: uppercase; /* Tout le site en majuscules */
+        }
 
-        .profile-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px 30px; align-items: flex-start; margin-top: 20px; }
-        .profile-image-container { grid-column: 1 / 3; width: 445px; height: 530px; background-color: rgb(43, 31, 29); overflow: hidden; }
-        .profile-image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .profile-text { grid-column: 3 / 5; display: flex; flex-direction: column; gap: 25px; }
-        .profile-text h1 { font-size: 3.5rem; font-weight: normal; }
-        .profile-text p { font-size: 1.15rem; line-height: 1.5; text-transform: none; }
+        /* Liens */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s ease;
+        }
 
-        .reveal-mask { display: block; overflow: hidden; padding-bottom: 0.15em; }
-        .reveal-content { display: inline-block; transform: translateY(115%); }
-        .load-reveal { animation: mechanicalRevealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        .scroll-reveal { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .scroll-reveal.animated { transform: translateY(0%); }
+        a:hover {
+            opacity: 0.6;
+        }
 
-        .delay-1 { animation-delay: 0.1s; transition-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.25s; transition-delay: 0.25s; }
-        .delay-3 { animation-delay: 0.4s; transition-delay: 0.4s; }
-        .delay-4 { animation-delay: 0.55s; transition-delay: 0.55s; }
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
 
-        @keyframes mechanicalRevealUp { to { transform: translateY(0%); } }
+        /* Typographies */
+        .typo-coconat {
+            font-family: 'Coconat', serif;
+            font-weight: 400 !important;
+        }
 
-        .resume-section { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px 30px; border-top: 1px solid rgb(43, 31, 29); padding-top: 40px; padding-bottom: 20px; }
-        .resume-section.border-bottom { border-bottom: 1px solid rgb(43, 31, 29); padding-bottom: 40px; }
-        .section-title { grid-column: 1; font-size: 1.1rem; letter-spacing: 1px; font-weight: normal; }
-        .experience-section .section-title { grid-row: 1 / span 3; }
-        .education-section .section-title { grid-row: 1 / span 1; }
-        .grid-item { display: flex; flex-direction: column; gap: 6px; }
-        .grid-item .date { font-size: 0.75rem; letter-spacing: 0.5px; }
-        .grid-item h3 { font-size: 1.1rem; letter-spacing: 0.5px; font-weight: normal; }
+        .typo-outfit {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600 !important;
+        }
 
-        .back-to-top-container { display: flex; justify-content: flex-end; margin-top: -20px; }
-        .back-to-top-btn { font-size: 0.75rem; border: 1px solid rgb(43, 31, 29); border-radius: 4px; padding: 8px 16px; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 8px; transition: background-color 0.3s ease; }
-        .back-to-top-btn:hover { background-color: rgb(43, 31, 29); color: #FAF6F0; }
+        .typo-outfit-light {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300 !important;
+            text-transform: none; /* Bas de casse pour les descriptions */
+        }
 
-        .contact-section { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 80px 0; }
-        .contact-section h2 { font-size: 2.8rem; font-weight: normal; letter-spacing: 1px; line-height: 60px; width: 100%; }
-        .contact-email { font-size: 3.5rem; letter-spacing: -1px; line-height: 70px; display: inline-block; }
-        .cta-btn { font-size: 0.85rem; letter-spacing: 2px; padding-bottom: 6px; border-bottom: 1.5px solid rgb(43, 31, 29); margin-top: 20px; }
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
 
-        footer { display: flex; justify-content: space-between; font-size: 0.65rem; letter-spacing: 0.5px; padding-bottom: 30px; }
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+
+        /* --- SECTION PROFIL (Structure 4 colonnes stricte) --- */
+        .profile-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px 30px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* Rectangle marron de 445x530px aligné TOUT À GAUCHE (Début de la colonne 1) */
+        .profile-image-container {
+            grid-column: 1 / 3; 
+            justify-self: start; 
+            width: 445px;
+            height: 530px;
+            max-width: 100%; 
+            background-color: rgb(43, 31, 29); 
+            overflow: hidden;
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Bloc texte calé STRICTEMENT sur la colonne 3 (parfaitement aligné avec CosaVostra) */
+        .profile-text {
+            grid-column: 3 / 5; 
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .profile-text h1 {
+            font-size: 3.5rem;
+            font-weight: normal;
+        }
+
+        .profile-text p {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            text-transform: none;
+        }
+
+        /* --- SECTION PARCOURS (Même grille à 4 colonnes) --- */
+        .resume-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px 30px;
+            border-top: 1px solid rgb(43, 31, 29);
+            padding-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .resume-section.border-bottom {
+            border-bottom: 1px solid rgb(43, 31, 29);
+            padding-bottom: 40px;
+        }
+
+        .section-title {
+            grid-column: 1;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        .experience-section .section-title {
+            grid-row: 1 / span 3;
+        }
+
+        .education-section .section-title {
+            grid-row: 1 / span 1;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .grid-item .date {
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .grid-item h3 {
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        /* --- BACK TO TOP --- */
+        .back-to-top-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -20px;
+        }
+
+        .back-to-top-btn {
+            font-size: 0.75rem;
+            border: 1px solid rgb(43, 31, 29);
+            border-radius: 4px;
+            padding: 8px 16px;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .back-to-top-btn:hover {
+            background-color: rgb(43, 31, 29);
+            color: #FAF6F0;
+        }
+
+        .back-to-top-btn .arrow-up {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-top-btn:hover .arrow-up {
+            transform: translateY(-5px);
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 60px 0;
+        }
+
+        .contact-section h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 60px;
+        }
+
+        .contact-email {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            line-height: 60px;
+        }
+
+        .cta-btn {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid rgb(43, 31, 29);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .cta-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover .arrow {
+            transform: translateX(6px); 
+        }
+
+        /* Footer (Avec espace de 30px strict en dessous du texte) */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            padding-top: 20px;
+            padding-bottom: 30px; /* Crée l'espace de 30px après les textes */
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 900px) {
+            body { padding: 30px 20px 0px 20px; gap: 40px; }
+            header { flex-direction: column; gap: 20px; }
+            .profile-section { grid-template-columns: 1fr; gap: 40px; }
+            .profile-image-container { grid-column: auto; width: 100%; height: auto; aspect-ratio: 445/530; justify-self: center; }
+            .profile-text { grid-column: auto; } 
+            .resume-section { grid-template-columns: 1fr; gap: 30px; }
+            .section-title { grid-column: auto; grid-row: auto !important; }
+            .contact-email { font-size: 1.8rem; line-height: 40px; }
+            .contact-section h2 { line-height: 40px; }
+            footer { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 30px; }
+        }
     </style>
 </head>
 <body id="top">
 
+    <!-- Barre de navigation -->
     <header>
-        <a href="index.html" class="logo"><span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span></a>
+        <a href="index.html" class="logo">
+            <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
+        </a>
         <nav>
             <ul>
                 <li><a href="projects.html" class="typo-outfit">PROJECTS</a></li>
@@ -89,37 +311,128 @@
         </nav>
     </header>
 
+    <!-- Section Présentation & Photo -->
     <section class="profile-section">
-        <div class="profile-image-container"><img src="profile.jpg" alt="" onerror="this.style.display='none'"></div>
+        <div class="profile-image-container">
+            <img src="profile.jpg" alt="" onerror="this.style.display='none'">
+        </div>
         <div class="profile-text">
-            <h1 class="typo-coconat"><span class="reveal-mask"><span class="reveal-content load-reveal delay-1">HEY <span class="typo-outfit">YOU !</span></span></span></h1>
-            <p class="typo-coconat"><span class="reveal-mask"><span class="reveal-content load-reveal delay-2">Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.</span></span></p>
-            <p class="typo-coconat"><span class="reveal-mask"><span class="reveal-content load-reveal delay-3">You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a></span></span></p>
-            <p class="typo-coconat"><span class="reveal-mask"><span class="reveal-content load-reveal delay-4">Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a></span></span></p>
+            <h1 class="typo-coconat">HEY <span class="typo-outfit">YOU !</span></h1>
+            
+            <p class="typo-coconat">
+                Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.
+            </p>
+            
+            <p class="typo-coconat">
+                You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a>
+            </p>
+            
+            <p class="typo-coconat">
+                Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a>
+            </p>
         </div>
     </section>
 
+    <!-- Section Expériences -->
     <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
-        <div class="grid-item"><span class="date typo-outfit">2023 - TODAY</span><h3 class="typo-coconat">CARRÉ NOIR</h3><p class="typo-outfit-light">Art Director</p></div>
-        <div class="grid-item"><span class="date typo-outfit">2021 - 2023</span><h3 class="typo-coconat">COSAVOSTRA</h3><p class="typo-outfit-light">Art Director</p></div>
-        <div class="grid-item"><span class="date typo-outfit">2020 - 2021</span><h3 class="typo-coconat">BETC</h3><p class="typo-outfit-light">Assistant AD</p></div>
+        
+        <!-- Colonne 2 : Carré Noir -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2023 - TODAY</span>
+            <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
+            <p class="typo-outfit-light">Art Director</p>
+        </div>
+        
+        <!-- Colonne 3 : CosaVostra (Alignée verticalement avec le texte "Hey you !") -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2021 - 2023</span>
+            <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
+            <p class="typo-outfit-light">Art Director</p>
+        </div>
+        
+        <!-- Colonne 4 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2020 - 2021</span>
+            <h3 class="item-title typo-coconat">BETC</h3>
+            <p class="typo-outfit-light">Assistant AD</p>
+        </div>
+
+        <!-- Ligne 2 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">JUNE - SEPT 2020</span>
+            <h3 class="item-title typo-coconat">DRAGON ROUGE</h3>
+            <p class="typo-outfit-light">Assistant AD (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">APRIL - AUGUST 2019</span>
+            <h3 class="item-title typo-coconat">BUILD IN AMSTERDAM</h3>
+            <p class="typo-outfit-light">Assistant AD (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MAY - AUGUST 2017</span>
+            <h3 class="item-title typo-coconat">LE FIGARO</h3>
+            <p class="typo-outfit-light">UX/UI Designer (Internship)</p>
+        </div>
+
+        <!-- Ligne 3 -->
+        <div class="grid-item">
+            <span class="date typo-outfit">2015</span>
+            <h3 class="item-title typo-coconat">STUDIO BLEU MARINE</h3>
+            <p class="typo-outfit-light">Set Assistant (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MARCH - APRIL 2014</span>
+            <h3 class="item-title typo-coconat">DOCS AD HOC</h3>
+            <p class="typo-outfit-light">Photo retouching (Internship)</p>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">MARCH 2013</span>
+            <h3 class="item-title typo-coconat">STUDIO BERGOEND</h3>
+            <p class="typo-outfit-light">Set Assistant (Internship)</p>
+        </div>
     </section>
 
+    <!-- Section Éducations -->
+    <section class="resume-section education-section border-bottom">
+        <h2 class="section-title typo-coconat">EDUCATIONS</h2>
+        
+        <div class="grid-item">
+            <span class="date typo-outfit">2018 - 2020</span>
+            <h3 class="item-title typo-coconat">MASTER'S DEGREE<br>IN ART DIRECTION</h3>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">2016 - 2020</span>
+            <h3 class="item-title typo-coconat">BACHELOR<br>IN GRAPHIC DESIGN</h3>
+        </div>
+        <div class="grid-item">
+            <span class="date typo-outfit">2012 - 2015</span>
+            <h3 class="item-title typo-coconat">HIGH SCHOOL<br>PHOTOGRAPHY</h3>
+        </div>
+    </section>
+
+    <!-- Bouton Retour en haut -->
+    <div class="back-to-top-container">
+        <a href="#top" class="back-to-top-btn typo-outfit">
+            BACK TO TOP <span class="arrow-up">&uarr;</span>
+        </a>
+    </div>
+
+    <!-- Section Contact -->
     <section class="contact-section">
-        <h2 class="typo-coconat"><span class="reveal-mask"><span class="reveal-content scroll-reveal delay-1">STAY IN <span class="typo-outfit">TOUCH</span></span></span></h2>
-        <div class="reveal-mask"><a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat reveal-content scroll-reveal delay-2">CAMILLERSSEL@GMAIL.COM</a></div>
+        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
+        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+        
+        <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="cta-btn typo-outfit">
+            LINKEDIN <span class="arrow">&rarr;</span>
+        </a>
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("animated"); } });
-            }, { threshold: 0.1 });
-            document.querySelectorAll(".scroll-reveal").forEach(el => observer.observe(el));
-        });
-    </script>
+    <!-- Mentions de bas de page (Avec padding-bottom de 30px intégré) -->
+    <footer>
+        <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
+        <span class="typo-outfit">MADE WITH LOVE & CODE</span>
+    </footer>
+
 </body>
 </html>
-
-```
