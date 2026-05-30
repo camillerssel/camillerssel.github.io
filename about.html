@@ -20,7 +20,7 @@
             font-display: swap;
         }
 
-        /* Styles Globaux basés sur image_2fe0fd.jpg */
+        /* Styles Globaux basés sur l'identité visuelle */
         * {
             margin: 0;
             padding: 0;
@@ -102,7 +102,7 @@
             letter-spacing: 1.5px;
         }
 
-        /* --- GRILLE PRINCIPALE DE PROFIL (Alignée sur 4 colonnes) --- */
+        /* --- GRILLE PRINCIPALE DE PROFIL (4 colonnes) --- */
         .profile-section {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -111,10 +111,13 @@
             margin-top: 20px;
         }
 
+        /* Carré noir configuré à 445x530px se terminant à la fin de la colonne 2 */
         .profile-image-container {
-            grid-column: 1 / span 2; /* Occupe les colonnes 1 et 2 */
-            width: 100%;
-            aspect-ratio: 1 / 1.1; 
+            grid-column: 1 / span 2; 
+            justify-self: end; /* Aligne le bord droit sur la fin de la colonne de Carré Noir */
+            width: 445px;
+            height: 530px;
+            max-width: 100%; /* Sécurité pour le responsive */
             background-color: #000000;
             overflow: hidden;
         }
@@ -125,8 +128,9 @@
             object-fit: cover;
         }
 
+        /* Texte calé sur la colonne 3 (aligné avec CosaVostra) */
         .profile-text {
-            grid-column: 3 / span 2; /* Débute à la colonne 3 (aligné avec CosaVostra) */
+            grid-column: 3 / span 2; 
             display: flex;
             flex-direction: column;
             gap: 25px;
@@ -143,7 +147,7 @@
             text-transform: none; /* Bas de casse */
         }
 
-        /* --- GRILLE PRINCIPALE DES PARCOURS (4 colonnes à plat) --- */
+        /* --- GRILLE PRINCIPALE DES PARCOURS (4 colonnes) --- */
         .resume-section {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -165,7 +169,6 @@
             font-weight: normal;
         }
 
-        /* Gestion de l'occupation verticale du titre selon le nombre de lignes de la grille */
         .experience-section .section-title {
             grid-row: 1 / span 3;
         }
@@ -226,7 +229,7 @@
             transform: translateY(-5px);
         }
 
-        /* --- BOUTONS EN BAS DE PAGE --- */
+        /* --- SECTION CONTACT (INTERLIGNAGE 60PX) --- */
         .cta-btn {
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -292,7 +295,7 @@
             body { padding: 30px 20px 30px 20px; gap: 40px; }
             header { flex-direction: column; gap: 20px; }
             .profile-section { grid-template-columns: 1fr; gap: 40px; }
-            .profile-image-container { grid-column: auto; }
+            .profile-image-container { grid-column: auto; width: 100%; height: auto; aspect-ratio: 445/530; justify-self: center; }
             .profile-text { grid-column: auto; }
             .resume-section { grid-template-columns: 1fr; gap: 30px; }
             .section-title { grid-column: auto; grid-row: auto !important; }
@@ -318,9 +321,10 @@
         </nav>
     </header>
 
-    <!-- Section Présentation & Photo (Le texte est calé sur la 3ème colonne globale) -->
+    <!-- Section Présentation & Photo -->
     <section class="profile-section">
         <div class="profile-image-container">
+            <!-- Tu pourras directement remplacer ou lier ta photo ici sur GitHub -->
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
         </div>
         <div class="profile-text">
@@ -339,22 +343,25 @@
         </div>
     </section>
 
-    <!-- Section Expériences (Grille à plat alignée sur le profil) -->
+    <!-- Section Expériences -->
     <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
         
-        <!-- Ligne 1 -->
+        <!-- Colonne 2 (La photo du haut s'aligne sur le bord droit de cette colonne) -->
         <div class="grid-item">
             <span class="date typo-outfit">2023 - TODAY</span>
             <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
             <p class="typo-outfit-light">Art Director</p>
         </div>
-        <!-- TEXTE ALIGNÉ ICI -->
+        
+        <!-- Colonne 3 (Le texte "Hey you !" s'aligne sur le bord gauche de cette colonne) -->
         <div class="grid-item">
             <span class="date typo-outfit">2021 - 2023</span>
             <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
             <p class="typo-outfit-light">Art Director</p>
         </div>
+        
+        <!-- Colonne 4 -->
         <div class="grid-item">
             <span class="date typo-outfit">2020 - 2021</span>
             <h3 class="item-title typo-coconat">BETC</h3>
