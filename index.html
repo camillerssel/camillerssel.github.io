@@ -10,15 +10,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
 
-    <!-- Importation de la police Coconat via CDN -->
-    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/coconat">
-
     <style>
+        /* Déclaration de ta police locale Coconat au format WOFF2 */
+        @font-face {
+            font-family: 'Coconat';
+            src: url('Coconat-Regular.woff2') format('woff2'); 
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
         /* Styles Globaux basés sur image_311c50.png */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased; /* Rend le texte plus net et précis */
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -45,12 +53,14 @@
         /* Classes de typographies strictes */
         .typo-coconat {
             font-family: 'Coconat', serif;
-            font-weight: 400 !important; /* Forcer le Regular (pas de gras) */
+            font-weight: 400 !important; /* Force le style Regular original, sans gras artificiel */
+            font-style: normal;
+            text-transform: none;
         }
 
         .typo-outfit {
             font-family: 'Outfit', sans-serif;
-            font-weight: 600 !important; /* Forcer le SemiBold */
+            font-weight: 600 !important; /* Force le style SemiBold */
             text-transform: uppercase;
         }
 
@@ -65,7 +75,6 @@
         .logo {
             font-size: 1.2rem;
             letter-spacing: 1px;
-            text-transform: uppercase;
         }
 
         nav ul {
@@ -97,15 +106,14 @@
             margin-bottom: 70px;
             max-width: 1200px;
             user-select: none;
-            font-weight: normal; /* Annule le gras par défaut du h1 */
+            font-weight: normal; /* Supprime le gras par défaut du h1 */
         }
 
-        /* Ajustement visuel pour le texte en Outfit dans le titre */
+        /* Ajustements visuels des espacements du titre pour coller à l'image */
         .hero-title .typo-outfit {
             letter-spacing: -3px;
         }
         
-        /* Ajustement visuel pour le texte en Coconat dans le titre */
         .hero-title .typo-coconat {
             letter-spacing: -1px;
         }
@@ -127,7 +135,7 @@
             letter-spacing: 3px;
         }
 
-        /* Footer pour équilibrer le Flexbox */
+        /* Footer vide pour équilibrer l'espace avec le Flexbox */
         footer {
             height: 20px;
         }
@@ -159,13 +167,13 @@
     <!-- Barre de navigation haute -->
     <header>
         <a href="index.html" class="logo">
-            <!-- Camille (Coconat Regular) et ROUSSEL (Outfit SemiBold) -->
+            <!-- Camille (Coconat Regular) et Roussel (Outfit SemiBold) -->
             <span class="typo-coconat">Camille</span> <span class="typo-outfit">Roussel</span>
         </a>
         
         <nav>
             <ul>
-                <!-- Boutons du menu (Outfit SemiBold) -->
+                <!-- Liens de navigation (Outfit SemiBold) -->
                 <li><a href="projects.html" class="typo-outfit">Projects</a></li>
                 <li><a href="photography.html" class="typo-outfit">Photography</a></li>
                 <li><a href="about.html" class="typo-outfit">About</a></li>
@@ -176,7 +184,7 @@
     <!-- Contenu Central -->
     <main>
         <h1 class="hero-title">
-            <!-- Alternance exacte des typos demandées -->
+            <!-- Alignement exact des typos demandées -->
             <span class="typo-outfit">Art</span> <span class="typo-coconat">Director</span><br>
             <span class="typo-coconat">Based in</span> <span class="typo-outfit">Paris</span>
         </h1>
