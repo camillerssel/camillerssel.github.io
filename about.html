@@ -1,3 +1,10 @@
+Ah, je vois tout à fait ! Tu veux un effet de **Text Reveal au défilement (Scroll-Driven / Masking effect)** où les lettres ou les mots sortent de nulle part, comme s'ils étaient coupés par une ligne invisible ou un masque, plutôt qu'un simple fondu enchaîné.
+
+Pour obtenir exactement ce rendu ultra-premium et graphique (très utilisé sur les sites de grands studios), on utilise `overflow: hidden` sur chaque ligne de texte et on fait remonter les mots depuis l'espace masqué. Pour que l'effet s'active de manière fluide au chargement de la page avec ce style précis, le CSS pur natif est ce qu'il y a de plus performant.
+
+Voici le code HTML/CSS complet mis à jour avec le véritable effet de masque mécanique :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -5,7 +12,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT — CAMILLE ROUSSEL</title>
     
-    <!-- Importation de la police Outfit via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
@@ -147,23 +153,31 @@
             text-transform: none;
         }
 
-        /* --- ANIMATION REVEAL (Scrolling / Page Load Effect) --- */
-        .reveal-item {
-            opacity: 0;
-            transform: translateY(30px);
-            animation: revealUp 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+        /* --- STRUCTURE DU TEXT REVEAL (EFFET MASQUE INVISIBLE COMME LA VIDÉO) --- */
+        .reveal-mask {
+            display: block;
+            overflow: hidden; /* Agit comme le couteau/masque invisible */
+            padding-bottom: 0.1em; /* Évite que les lettres descendantes soient coupées au repos */
         }
 
-        /* Délais d'apparition successifs pour l'élégance */
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
+        .reveal-content {
+            display: inline-block;
+            transform: translateY(110%); /* Complètement caché sous la ligne de masque au départ */
+            animation: mechanicalRevealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
-        @keyframes revealUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        /* Délais d'enchaînement des lignes (Cascade) */
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.25s; }
+        .delay-3 { animation-delay: 0.4s; }
+        .delay-4 { animation-delay: 0.55s; }
+
+        @keyframes mechanicalRevealUp {
+            0% {
+                transform: translateY(110%);
+            }
+            100% {
+                transform: translateY(0%);
             }
         }
 
@@ -317,7 +331,6 @@
 </head>
 <body id="top">
 
-    <!-- Barre de navigation -->
     <header>
         <a href="index.html" class="logo">
             <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
@@ -331,54 +344,60 @@
         </nav>
     </header>
 
-    <!-- Section Présentation & Photo (Avec classes d'animation ajoutées sur les textes) -->
     <section class="profile-section">
         <div class="profile-image-container">
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
         </div>
         <div class="profile-text">
-            <h1 class="typo-coconat reveal-item delay-1">HEY <span class="typo-outfit">YOU !</span></h1>
             
-            <p class="typo-coconat reveal-item delay-2">
-                Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.
+            <h1 class="typo-coconat">
+                <span class="reveal-mask">
+                    <span class="reveal-content delay-1">HEY <span class="typo-outfit">YOU !</span></span>
+                </span>
+            </h1>
+            
+            <p class="typo-coconat">
+                <span class="reveal-mask">
+                    <span class="reveal-content delay-2">Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.</span>
+                </span>
             </p>
             
-            <p class="typo-coconat reveal-item delay-3">
-                You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a>
+            <p class="typo-coconat">
+                <span class="reveal-mask">
+                    <span class="reveal-content delay-3">You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a></span>
+                </span>
             </p>
             
-            <p class="typo-coconat reveal-item delay-4">
-                Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a>
+            <p class="typo-coconat">
+                <span class="reveal-mask">
+                    <span class="reveal-content delay-4">Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a></span>
+                </span>
             </p>
+            
         </div>
     </section>
 
-    <!-- Section Expériences -->
     <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
         
-        <!-- Colonne 2 : Carré Noir -->
         <div class="grid-item">
             <span class="date typo-outfit">2023 - TODAY</span>
             <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
             <p class="typo-outfit-light">Art Director</p>
         </div>
         
-        <!-- Colonne 3 : CosaVostra -->
         <div class="grid-item">
             <span class="date typo-outfit">2021 - 2023</span>
             <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
             <p class="typo-outfit-light">Art Director</p>
         </div>
         
-        <!-- Colonne 4 -->
         <div class="grid-item">
             <span class="date typo-outfit">2020 - 2021</span>
             <h3 class="item-title typo-coconat">BETC</h3>
             <p class="typo-outfit-light">Assistant AD</p>
         </div>
 
-        <!-- Ligne 2 -->
         <div class="grid-item">
             <span class="date typo-outfit">JUNE - SEPT 2020</span>
             <h3 class="item-title typo-coconat">DRAGON ROUGE</h3>
@@ -395,7 +414,6 @@
             <p class="typo-outfit-light">UX/UI Designer (Internship)</p>
         </div>
 
-        <!-- Ligne 3 -->
         <div class="grid-item">
             <span class="date typo-outfit">2015</span>
             <h3 class="item-title typo-coconat">STUDIO BLEU MARINE</h3>
@@ -413,7 +431,6 @@
         </div>
     </section>
 
-    <!-- Section Éducations -->
     <section class="resume-section education-section border-bottom">
         <h2 class="section-title typo-coconat">EDUCATIONS</h2>
         
@@ -431,14 +448,12 @@
         </div>
     </section>
 
-    <!-- Bouton Retour en haut -->
     <div class="back-to-top-container">
         <a href="#top" class="back-to-top-btn typo-outfit">
             BACK TO TOP <span class="arrow-up">&uarr;</span>
         </a>
     </div>
 
-    <!-- Section Contact -->
     <section class="contact-section">
         <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
         <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
@@ -448,7 +463,6 @@
         </a>
     </section>
 
-    <!-- Mentions de bas de page -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
@@ -456,3 +470,5 @@
 
 </body>
 </html>
+
+```
