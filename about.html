@@ -35,9 +35,9 @@
 
         body {
             background-color: #FAF6F0; /* Fond crème */
-            color: rgb(43, 31, 29); /* Couleur exacte demandée (Marron foncé) */
+            color: rgb(43, 31, 29); /* Couleur exacte RVB 43 31 29 */
             font-family: 'Coconat', serif;
-            /* Padding : Haut (40px), Droite (60px), Bas (30px), Gauche (60px) */
+            /* Padding : Haut (40px), Droite (60px), Bas (Exactement 30px), Gauche (60px) */
             padding: 40px 60px 30px 60px; 
             display: flex;
             flex-direction: column;
@@ -53,7 +53,7 @@
         }
 
         a:hover {
-            opacity: 0.6; /* Effet au survol uniquement */
+            opacity: 0.6;
         }
 
         .underline {
@@ -118,7 +118,7 @@
             width: 445px;
             height: 530px;
             max-width: 100%; 
-            background-color: rgb(43, 31, 29); /* Remplacement du noir par la couleur de la charte */
+            background-color: rgb(43, 31, 29); 
             overflow: hidden;
         }
 
@@ -186,7 +186,6 @@
         .grid-item .date {
             font-size: 0.75rem;
             letter-spacing: 0.5px;
-            /* Opacité supprimée pour préserver la couleur exacte */
         }
 
         .grid-item h3 {
@@ -280,14 +279,13 @@
             margin-top: 20px;
         }
 
-        /* Footer Tout en bas */
+        /* Footer (Espace de 30px en dessous géré par le padding du body) */
         footer {
             display: flex;
             justify-content: space-between;
             font-size: 0.65rem;
             letter-spacing: 0.5px;
             padding-top: 20px;
-            /* Opacité supprimée pour préserver la couleur exacte */
         }
 
         /* Responsive Mobile */
@@ -346,14 +344,14 @@
     <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
         
-        <!-- Colonne 2 (Le carré du dessus vient s'aligner exactement sur la fin de cette colonne) -->
+        <!-- Colonne 2 -->
         <div class="grid-item">
             <span class="date typo-outfit">2023 - TODAY</span>
             <h3 class="item-title typo-coconat">CARRÉ NOIR</h3>
             <p class="typo-outfit-light">Art Director</p>
         </div>
         
-        <!-- Colonne 3 (Le texte "Hey you !" s'aligne sur le début de cette colonne) -->
+        <!-- Colonne 3 -->
         <div class="grid-item">
             <span class="date typo-outfit">2021 - 2023</span>
             <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
