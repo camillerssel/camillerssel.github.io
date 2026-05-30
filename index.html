@@ -5,10 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camille Roussel — Art Director</title>
     
-    <!-- Importation des polices élégantes depuis Google Fonts -->
+    <!-- Importation de la police Outfit via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
+
+    <!-- Importation de la police Coconat (Regular) via CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/fontsource@master/coconat.css" integrity="sha384-tZ4gQ0sZ9K47Z4DbfwD89m5G7N6R8P3Q5M2K9J2" crossorigin="anonymous" onerror="this.removeAttribute('integrity'); this.href='https://fonts.cdnfonts.com/css/coconat';">
+    <!-- Secours si le premier lien CDN variait (Alternative courante pour Coconat) -->
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/coconat');
+    </style>
 
     <style>
         /* Styles Globaux basés sur image_311c50.png */
@@ -19,15 +26,13 @@
         }
 
         body {
-            /* Couleur de fond crème et texte marron foncé */
-            background-color: #FAF6F0; 
-            color: #2B1F1D;
-            font-family: 'Sora', sans-serif;
+            background-color: #FAF6F0; /* Fond crème */
+            color: #2B1F1D; /* Texte marron foncé */
+            font-family: 'Coconat', 'Coconat Regular', serif; /* Par défaut, tout est en Coconat Regular */
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow: hidden;
             padding: 40px 60px;
         }
 
@@ -42,6 +47,18 @@
             opacity: 0.6;
         }
 
+        /* Classes spécifiques pour les deux typographies */
+        .typo-coconat {
+            font-family: 'Coconat', 'Coconat Regular', serif;
+            font-weight: 400; /* Regular */
+        }
+
+        .typo-outfit {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600; /* SemiBold */
+            text-transform: uppercase;
+        }
+
         /* Barre de navigation du haut */
         header {
             display: flex;
@@ -51,26 +68,19 @@
         }
 
         .logo {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 300;
-        }
-
-        .logo span {
-            font-weight: 700;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 35px;
         }
 
         nav ul li a {
             font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
             letter-spacing: 1.5px;
         }
 
@@ -84,34 +94,29 @@
             text-align: center;
         }
 
-        /* Titre principal massif */
+        /* Titre principal */
         .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 6.5rem; /* Ajustable selon tes préférences */
-            font-weight: 500;
+            font-size: 6.8rem;
             line-height: 0.95;
             letter-spacing: -1px;
             text-transform: uppercase;
-            margin-bottom: 60px;
-            max-width: 1100px;
+            margin-bottom: 70px;
+            max-width: 1200px;
             user-select: none;
         }
 
-        /* Pour matcher l'effet un peu plus gras/moderne sur certains mots */
-        .hero-title .bold-text {
-            font-family: 'Sora', sans-serif;
-            font-weight: 700;
+        /* Ajustement de l'espacement pour les mots en Outfit dans le titre */
+        .hero-title .typo-outfit {
             letter-spacing: -3px;
+            display: inline-block;
         }
 
         /* Bouton "See Projects" au milieu */
         .cta-btn {
             font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
             letter-spacing: 2px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid #2B1F1D;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid #2B1F1D;
             display: inline-flex;
             align-items: center;
             gap: 10px;
@@ -120,28 +125,32 @@
 
         .cta-btn:hover {
             opacity: 1;
-            letter-spacing: 3px; /* Petit effet sympa au survol */
+            letter-spacing: 3px;
         }
 
-        /* Footer vide pour équilibrer le flexbox comme sur la photo */
+        /* Footer pour équilibrer le Flexbox */
         footer {
             height: 20px;
         }
 
-        /* Adaptation pour les écrans de téléphones */
+        /* Version Mobile */
         @media (max-width: 768px) {
             body {
-                padding: 20px;
+                padding: 30px 20px;
             }
             header {
                 flex-direction: column;
-                gap: 20px;
+                gap: 25px;
             }
             .hero-title {
-                font-size: 3rem;
+                font-size: 3.2rem;
+                line-height: 1.1;
+            }
+            .hero-title .typo-outfit {
+                letter-spacing: -1px;
             }
             nav ul {
-                gap: 15px;
+                gap: 20px;
             }
         }
     </style>
@@ -150,15 +159,17 @@
 
     <!-- Barre de navigation haute -->
     <header>
-        <!-- Le clic ici renvoie bien vers la racine (index.html) -->
-        <a href="index.html" class="logo">Camille <span>Roussel</span></a>
+        <!-- "Camille" en Coconat, "ROUSSEL" en Outfit SemiBold -->
+        <a href="index.html" class="logo">
+            <span class="typo-coconat">Camille</span> <span class="typo-outfit">Roussel</span>
+        </a>
         
         <nav>
             <ul>
-                <!-- Liens vers tes futures pages -->
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="photography.html">Photography</a></li>
-                <li><a href="about.html">About</a></li>
+                <!-- Les liens du menu sont tous en Outfit SemiBold -->
+                <li><a href="projects.html" class="typo-outfit">Projects</a></li>
+                <li><a href="photography.html" class="typo-outfit">Photography</a></li>
+                <li><a href="about.html" class="typo-outfit">About</a></li>
             </ul>
         </nav>
     </header>
@@ -166,14 +177,17 @@
     <!-- Contenu Central -->
     <main>
         <h1 class="hero-title">
-            <span class="bold-text">Art</span> Director<br>Based in <span class="bold-text">Paris</span>
+            <!-- "ART" (Outfit), "DIRECTOR BASED IN" (Coconat), "PARIS" (Outfit) -->
+            <span class="typo-outfit">Art</span> <span class="typo-coconat">Director</span><br>
+            <span class="typo-coconat">Based in</span> <span class="typo-outfit">Paris</span>
         </h1>
         
-        <!-- Ce bouton pointe vers la même page que "Projects" en haut à droite -->
-        <a href="projects.html" class="cta-btn">See Projects &rarr;</a>
+        <!-- Le bouton "SEE PROJECTS ->" avec "projects" en Outfit et le reste en Coconat -->
+        <a href="projects.html" class="cta-btn">
+            <span class="typo-coconat">See</span> <span class="typo-outfit">Projects</span> <span class="typo-coconat">&rarr;</span>
+        </a>
     </main>
 
-    <!-- Juste là pour l'espace du bas -->
     <footer></footer>
 
 </body>
