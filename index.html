@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camille Roussel — Art Director</title>
     
-    <!-- Importation de la police Outfit via Google Fonts -->
+    <!-- Importation de la police Outfit (SemiBold 600) via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
 
-    <!-- Importation de la police Coconat (Regular) via CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/fontsource@master/coconat.css" integrity="sha384-tZ4gQ0sZ9K47Z4DbfwD89m5G7N6R8P3Q5M2K9J2" crossorigin="anonymous" onerror="this.removeAttribute('integrity'); this.href='https://fonts.cdnfonts.com/css/coconat';">
-    <!-- Secours si le premier lien CDN variait (Alternative courante pour Coconat) -->
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/coconat');
-    </style>
+    <!-- Importation de la police Coconat via CDN -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/coconat">
 
     <style>
         /* Styles Globaux basés sur image_311c50.png */
@@ -28,7 +24,6 @@
         body {
             background-color: #FAF6F0; /* Fond crème */
             color: #2B1F1D; /* Texte marron foncé */
-            font-family: 'Coconat', 'Coconat Regular', serif; /* Par défaut, tout est en Coconat Regular */
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -47,15 +42,15 @@
             opacity: 0.6;
         }
 
-        /* Classes spécifiques pour les deux typographies */
+        /* Classes de typographies strictes */
         .typo-coconat {
-            font-family: 'Coconat', 'Coconat Regular', serif;
-            font-weight: 400; /* Regular */
+            font-family: 'Coconat', serif;
+            font-weight: 400 !important; /* Forcer le Regular (pas de gras) */
         }
 
         .typo-outfit {
             font-family: 'Outfit', sans-serif;
-            font-weight: 600; /* SemiBold */
+            font-weight: 600 !important; /* Forcer le SemiBold */
             text-transform: uppercase;
         }
 
@@ -69,7 +64,7 @@
 
         .logo {
             font-size: 1.2rem;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -98,20 +93,24 @@
         .hero-title {
             font-size: 6.8rem;
             line-height: 0.95;
-            letter-spacing: -1px;
             text-transform: uppercase;
             margin-bottom: 70px;
             max-width: 1200px;
             user-select: none;
+            font-weight: normal; /* Annule le gras par défaut du h1 */
         }
 
-        /* Ajustement de l'espacement pour les mots en Outfit dans le titre */
+        /* Ajustement visuel pour le texte en Outfit dans le titre */
         .hero-title .typo-outfit {
             letter-spacing: -3px;
-            display: inline-block;
+        }
+        
+        /* Ajustement visuel pour le texte en Coconat dans le titre */
+        .hero-title .typo-coconat {
+            letter-spacing: -1px;
         }
 
-        /* Bouton "See Projects" au milieu */
+        /* Bouton "See Projects" au milieu (Tout en Outfit SemiBold) */
         .cta-btn {
             font-size: 0.85rem;
             letter-spacing: 2px;
@@ -159,14 +158,14 @@
 
     <!-- Barre de navigation haute -->
     <header>
-        <!-- "Camille" en Coconat, "ROUSSEL" en Outfit SemiBold -->
         <a href="index.html" class="logo">
+            <!-- Camille (Coconat Regular) et ROUSSEL (Outfit SemiBold) -->
             <span class="typo-coconat">Camille</span> <span class="typo-outfit">Roussel</span>
         </a>
         
         <nav>
             <ul>
-                <!-- Les liens du menu sont tous en Outfit SemiBold -->
+                <!-- Boutons du menu (Outfit SemiBold) -->
                 <li><a href="projects.html" class="typo-outfit">Projects</a></li>
                 <li><a href="photography.html" class="typo-outfit">Photography</a></li>
                 <li><a href="about.html" class="typo-outfit">About</a></li>
@@ -177,14 +176,14 @@
     <!-- Contenu Central -->
     <main>
         <h1 class="hero-title">
-            <!-- "ART" (Outfit), "DIRECTOR BASED IN" (Coconat), "PARIS" (Outfit) -->
+            <!-- Alternance exacte des typos demandées -->
             <span class="typo-outfit">Art</span> <span class="typo-coconat">Director</span><br>
             <span class="typo-coconat">Based in</span> <span class="typo-outfit">Paris</span>
         </h1>
         
-        <!-- Le bouton "SEE PROJECTS ->" avec "projects" en Outfit et le reste en Coconat -->
-        <a href="projects.html" class="cta-btn">
-            <span class="typo-coconat">See</span> <span class="typo-outfit">Projects</span> <span class="typo-coconat">&rarr;</span>
+        <!-- Bouton entièrement en Outfit SemiBold -->
+        <a href="projects.html" class="cta-btn typo-outfit">
+            See Projects &rarr;
         </a>
     </main>
 
