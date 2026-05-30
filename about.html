@@ -1,8 +1,12 @@
-C'est parfait comme ça. J'ai appliqué exactement la même structure de masque invisible (`reveal-mask` et `reveal-content`) sur les deux premières lignes de la section Contact ("STAY IN TOUCH" et ton adresse e-mail).
+Oups ! C'est le petit piège classique quand on injecte directement du code qui utilise un `IntersectionObserver` : comme le script attend que les éléments passent la "ligne de démarcation" de l'écran en scrollant, les textes situés tout en haut (le "HEY YOU !") restent bloqués à 110% en dessous de leur masque invisible car ils sont chargés *déjà* présents à l'écran sans mouvement de scroll initial.
 
-Pour que l'effet se déclenche proprement au moment où ces éléments apparaissent à l'écran (vu qu'ils sont situés tout en bas de ta page), j'ai ajouté un léger script d'**Intersection Observer** en bas du fichier. C'est la méthode moderne standard qui active l'animation de reveal précisément au moment du scroll.
+Pour régler ça de manière ultra-propre, robuste et sans bavure, j'ai modifié la logique dans le code ci-dessous :
 
-Voici le code HTML/CSS complet, entièrement mis à jour :
+1. Le texte du haut ("HEY YOU !", etc.) utilise une animation CSS directe (`animation`) pour sortir immédiatement du masque dès l'ouverture de la page, exactement comme dans le fichier `Animation texte.mov`.
+2. Le bloc du bas ("STAY IN TOUCH") conserve le script d'observation pour se déclencher uniquement quand l'utilisateur scrolle enfin tout en bas de la page.
+3. J'ai nettoyé le code pour être certain qu'aucun résidu de texte ou de commentaire parasite ne vienne s'afficher en haut de ton écran.
+
+Voici le code HTML/CSS complet et corrigé à 100% :
 
 ```html
 <!DOCTYPE html>
@@ -12,6 +16,7 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT — CAMILLE ROUSSEL</title>
     
+    <!-- Importation de la police Outfit via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
@@ -153,31 +158,44 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
             text-transform: none;
         }
 
-        /* --- STRUCTURE DU TEXT REVEAL MECHANICAL (COMME LA VIDÉO) --- */
+        /* --- EFFET REVEAL MÉCANIQUE UNIQUE (TYPE MASQUE INVISIBLE) --- */
         .reveal-mask {
             display: block;
-            overflow: hidden; /* Masque mécanique invisible */
-            padding-bottom: 0.15em; /* Laisse respirer les lettres sans les couper au repos */
+            overflow: hidden; /* Découpe nette comme une fente invisible */
+            padding-bottom: 0.15em; 
         }
 
         .reveal-content {
             display: inline-block;
-            transform: translateY(115%); /* Totalement caché sous le masque par défaut */
-            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(115%); /* Masqué par défaut sous la ligne */
         }
 
-        /* Classe déclenchée au chargement ou au scroll */
-        .reveal-content.animated {
+        /* 1. Animation immédiate au chargement (Haut de page) */
+        .load-reveal {
+            animation: mechanicalRevealUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* 2. Transition fluide au Scroll (Bas de page) */
+        .scroll-reveal {
+            transition: transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.animated {
             transform: translateY(0%);
         }
 
-        /* Délais d'enchaînement (Cascade) */
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.25s; }
-        .delay-3 { transition-delay: 0.4s; }
-        .delay-4 { transition-delay: 0.55s; }
+        /* Délais d'exécution en cascade */
+        .delay-1 { animation-delay: 0.15s; transition-delay: 0.15s; }
+        .delay-2 { animation-delay: 0.3s; transition-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.45s; transition-delay: 0.45s; }
+        .delay-4 { animation-delay: 0.6s; transition-delay: 0.6s; }
 
-        /* --- SECTION PARCOURS (Même grille à 4 colonnes) --- */
+        @keyframes mechanicalRevealUp {
+            0% { transform: translateY(115%); }
+            100% { transform: translateY(0%); }
+        }
+
+        /* --- SECTION PARCOURS (Grille à 4 colonnes) --- */
         .resume-section {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -329,6 +347,7 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
 </head>
 <body id="top">
 
+    <!-- Barre de navigation -->
     <header>
         <a href="index.html" class="logo">
             <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
@@ -342,6 +361,7 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
         </nav>
     </header>
 
+    <!-- Section Présentation & Photo (Animation instantanée au chargement) -->
     <section class="profile-section">
         <div class="profile-image-container">
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
@@ -350,31 +370,32 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
             
             <h1 class="typo-coconat">
                 <span class="reveal-mask">
-                    <span class="reveal-content delay-1">HEY <span class="typo-outfit">YOU !</span></span>
+                    <span class="reveal-content load-reveal delay-1">HEY <span class="typo-outfit">YOU !</span></span>
                 </span>
             </h1>
             
             <p class="typo-coconat">
                 <span class="reveal-mask">
-                    <span class="reveal-content delay-2">Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.</span>
+                    <span class="reveal-content load-reveal delay-2">Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.</span>
                 </span>
             </p>
             
             <p class="typo-coconat">
                 <span class="reveal-mask">
-                    <span class="reveal-content delay-3">You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a></span>
+                    <span class="reveal-content load-reveal delay-3">You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a></span>
                 </span>
             </p>
             
             <p class="typo-coconat">
                 <span class="reveal-mask">
-                    <span class="reveal-content delay-4">Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a></span>
+                    <span class="reveal-content load-reveal delay-4">Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a></span>
                 </span>
             </p>
             
         </div>
     </section>
 
+    <!-- Section Expériences -->
     <section class="resume-section experience-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
         
@@ -429,6 +450,7 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
         </div>
     </section>
 
+    <!-- Section Éducations -->
     <section class="resume-section education-section border-bottom">
         <h2 class="section-title typo-coconat">EDUCATIONS</h2>
         
@@ -446,21 +468,23 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
         </div>
     </section>
 
+    <!-- Bouton Retour en haut -->
     <div class="back-to-top-container">
         <a href="#top" class="back-to-top-btn typo-outfit">
             BACK TO TOP <span class="arrow-up">&uarr;</span>
         </a>
     </div>
 
+    <!-- Section Contact (Animation mécanique déclenchée précisément au scroll) -->
     <section class="contact-section">
         <h2 class="typo-coconat">
             <span class="reveal-mask">
-                <span class="reveal-content delay-1">STAY IN <span class="typo-outfit">TOUCH</span></span>
+                <span class="reveal-content scroll-reveal delay-1">STAY IN <span class="typo-outfit">TOUCH</span></span>
             </span>
         </h2>
         
         <div class="reveal-mask">
-            <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat reveal-content delay-2">CAMILLERSSEL@GMAIL.COM</a>
+            <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat reveal-content scroll-reveal delay-2">CAMILLERSSEL@GMAIL.COM</a>
         </div>
         
         <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="cta-btn typo-outfit">
@@ -468,31 +492,33 @@ Voici le code HTML/CSS complet, entièrement mis à jour :
         </a>
     </section>
 
+    <!-- Mentions de bas de page -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
     </footer>
 
+    <!-- Script pour déclencher l'effet mécanique uniquement au moment où l'on scrolle sur le bloc contact -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const observerOptions = {
                 root: null,
                 rootMargin: "0px",
-                threshold: 0.15 // Déclenche l'animation dès que 15% de l'élément passe la ligne invisible
+                threshold: 0.1
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("animated");
-                        observer.unobserve(entry.target); // Une fois animé, on arrête de l'observer
+                        observer.unobserve(entry.target); 
                     }
                 });
             }, observerOptions);
 
-            // On cible tous les contenus cachés sous le masque pour les animer au bon moment
-            const revealElements = document.querySelectorAll(".reveal-content");
-            revealElements.forEach(el => observer.observe(el));
+            // On observe uniquement les éléments du bas qui ont la classe .scroll-reveal
+            const scrollElements = document.querySelectorAll(".scroll-reveal");
+            scrollElements.forEach(el => observer.observe(el));
         });
     </script>
 
