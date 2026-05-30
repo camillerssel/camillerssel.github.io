@@ -1,14 +1,3 @@
-C’est un problème d’ajustement lié au comportement de l’`IntersectionObserver` et à la structure de la section. Quand l'élément est enveloppé dans un masque avec `overflow: hidden`, sa hauteur ou sa détection peut parfois induire le script en erreur sur certains navigateurs, laissant le texte masqué à 115% en permanence.
-
-Pour régler cela une bonne fois pour toutes, j'ai simplifié et sécurisé la logique :
-
-1. **Zéro JavaScript :** Plus besoin d'observer le scroll avec un script qui peut faillir. On utilise une animation CSS pure (`revealUp`) qui s'applique proprement.
-2. **Animation fluide au survol/chargement :** Les textes apparaissent de façon mécanique et linéaire comme sur ta vidéo de référence.
-3. **Nettoyage complet :** Le code est épuré pour éviter tout bug d'affichage.
-
-Voici le code HTML/CSS complet, corrigé et ultra-robuste :
-
-```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
