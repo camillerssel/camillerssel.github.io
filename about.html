@@ -38,7 +38,7 @@
             background-color: #FAF6F0; /* Fond crème */
             color: rgb(43, 31, 29); /* Couleur marron foncé RVB 43, 31, 29 */
             font-family: 'Coconat', serif;
-            padding: 40px 60px 0px 60px; /* Le padding bas est géré par le footer pour plus de précision */
+            padding: 40px 60px 0px 60px; 
             display: flex;
             flex-direction: column;
             gap: 60px;
@@ -111,7 +111,7 @@
             margin-top: 20px;
         }
 
-        /* Rectangle marron de 445x530px aligné TOUT À GAUCHE (Début de la colonne 1) */
+        /* Rectangle marron de 445x530px aligné TOUT À GAUCHE */
         .profile-image-container {
             grid-column: 1 / 3; 
             justify-self: start; 
@@ -128,7 +128,7 @@
             object-fit: cover;
         }
 
-        /* Bloc texte calé STRICTEMENT sur la colonne 3 (parfaitement aligné avec CosaVostra) */
+        /* Bloc texte calé STRICTEMENT sur la colonne 3 */
         .profile-text {
             grid-column: 3 / 5; 
             display: flex;
@@ -145,6 +145,26 @@
             font-size: 1.15rem;
             line-height: 1.5;
             text-transform: none;
+        }
+
+        /* --- ANIMATION REVEAL (Scrolling / Page Load Effect) --- */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: revealUp 1s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+        }
+
+        /* Délais d'apparition successifs pour l'élégance */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        @keyframes revealUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* --- SECTION PARCOURS (Même grille à 4 colonnes) --- */
@@ -270,14 +290,14 @@
             transform: translateX(6px); 
         }
 
-        /* Footer (Avec espace de 30px strict en dessous du texte) */
+        /* Footer */
         footer {
             display: flex;
             justify-content: space-between;
             font-size: 0.65rem;
             letter-spacing: 0.5px;
             padding-top: 20px;
-            padding-bottom: 30px; /* Crée l'espace de 30px après les textes */
+            padding-bottom: 30px; 
         }
 
         /* Responsive Mobile */
@@ -311,23 +331,23 @@
         </nav>
     </header>
 
-    <!-- Section Présentation & Photo -->
+    <!-- Section Présentation & Photo (Avec classes d'animation ajoutées sur les textes) -->
     <section class="profile-section">
         <div class="profile-image-container">
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
         </div>
         <div class="profile-text">
-            <h1 class="typo-coconat">HEY <span class="typo-outfit">YOU !</span></h1>
+            <h1 class="typo-coconat reveal-item delay-1">HEY <span class="typo-outfit">YOU !</span></h1>
             
-            <p class="typo-coconat">
+            <p class="typo-coconat reveal-item delay-2">
                 Art Director based in Paris, I’ve been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.
             </p>
             
-            <p class="typo-coconat">
+            <p class="typo-coconat reveal-item delay-3">
                 You can find me at this adress : <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a>
             </p>
             
-            <p class="typo-coconat">
+            <p class="typo-coconat reveal-item delay-4">
                 Or on <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="underline">Linkedin</a>
             </p>
         </div>
@@ -344,7 +364,7 @@
             <p class="typo-outfit-light">Art Director</p>
         </div>
         
-        <!-- Colonne 3 : CosaVostra (Alignée verticalement avec le texte "Hey you !") -->
+        <!-- Colonne 3 : CosaVostra -->
         <div class="grid-item">
             <span class="date typo-outfit">2021 - 2023</span>
             <h3 class="item-title typo-coconat">COSAVOSTRA</h3>
@@ -428,7 +448,7 @@
         </a>
     </section>
 
-    <!-- Mentions de bas de page (Avec padding-bottom de 30px intégré) -->
+    <!-- Mentions de bas de page -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
