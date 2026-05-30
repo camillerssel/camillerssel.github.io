@@ -184,7 +184,7 @@
             opacity: 0.9;
         }
 
-        /* --- BOUTON BACK TO TOP AMÉLIORÉ --- */
+        /* --- BOUTON BACK TO TOP AVEC BORDS ARRONDIS À 4PX --- */
         .back-to-top-container {
             display: flex;
             justify-content: flex-end;
@@ -194,15 +194,16 @@
         .back-to-top-btn {
             font-size: 0.75rem;
             border: 1px solid #2B1F1D;
+            border-radius: 4px; /* Ajout des bords arrondis demandés */
             padding: 8px 16px;
             letter-spacing: 1px;
             display: inline-flex;
             align-items: center;
-            gap: 8px; /* Écart entre le texte et la flèche */
+            gap: 8px;
             transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
         }
 
-        /* On garde l'effet de remplissage foncé au survol */
+        /* Effet d'inversion sombre au survol */
         .back-to-top-btn:hover {
             background-color: #2B1F1D;
             color: #FAF6F0;
@@ -215,7 +216,7 @@
             transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Au survol, la flèche glisse vers le haut */
+        /* Animation verticale de la flèche */
         .back-to-top-btn:hover .arrow-up {
             transform: translateY(-5px);
         }
