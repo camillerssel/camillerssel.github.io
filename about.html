@@ -1,3 +1,10 @@
+C'est parfait comme ça. J'ai appliqué exactement la même structure de masque invisible (`reveal-mask` et `reveal-content`) sur les deux premières lignes de la section Contact ("STAY IN TOUCH" et ton adresse e-mail).
+
+Pour que l'effet se déclenche proprement au moment où ces éléments apparaissent à l'écran (vu qu'ils sont situés tout en bas de ta page), j'ai ajouté un léger script d'**Intersection Observer** en bas du fichier. C'est la méthode moderne standard qui active l'animation de reveal précisément au moment du scroll.
+
+Voici le code HTML/CSS complet, entièrement mis à jour :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -146,33 +153,29 @@
             text-transform: none;
         }
 
-        /* --- STRUCTURE DU TEXT REVEAL (EFFET MASQUE INVISIBLE COMME LA VIDÉO) --- */
+        /* --- STRUCTURE DU TEXT REVEAL MECHANICAL (COMME LA VIDÉO) --- */
         .reveal-mask {
             display: block;
-            overflow: hidden; /* Agit comme le couteau/masque invisible */
-            padding-bottom: 0.1em; /* Évite que les lettres descendantes soient coupées au repos */
+            overflow: hidden; /* Masque mécanique invisible */
+            padding-bottom: 0.15em; /* Laisse respirer les lettres sans les couper au repos */
         }
 
         .reveal-content {
             display: inline-block;
-            transform: translateY(110%); /* Complètement caché sous la ligne de masque au départ */
-            animation: mechanicalRevealUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(115%); /* Totalement caché sous le masque par défaut */
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Délais d'enchaînement des lignes (Cascade) */
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.25s; }
-        .delay-3 { animation-delay: 0.4s; }
-        .delay-4 { animation-delay: 0.55s; }
-
-        @keyframes mechanicalRevealUp {
-            0% {
-                transform: translateY(110%);
-            }
-            100% {
-                transform: translateY(0%);
-            }
+        /* Classe déclenchée au chargement ou au scroll */
+        .reveal-content.animated {
+            transform: translateY(0%);
         }
+
+        /* Délais d'enchaînement (Cascade) */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.25s; }
+        .delay-3 { transition-delay: 0.4s; }
+        .delay-4 { transition-delay: 0.55s; }
 
         /* --- SECTION PARCOURS (Même grille à 4 colonnes) --- */
         .resume-section {
@@ -269,12 +272,14 @@
             font-weight: normal;
             letter-spacing: 1px;
             line-height: 60px;
+            width: 100%;
         }
 
         .contact-email {
             font-size: 3.5rem;
             letter-spacing: -1px;
-            line-height: 60px;
+            line-height: 70px;
+            display: inline-block;
         }
 
         .cta-btn {
@@ -448,8 +453,15 @@
     </div>
 
     <section class="contact-section">
-        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
-        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+        <h2 class="typo-coconat">
+            <span class="reveal-mask">
+                <span class="reveal-content delay-1">STAY IN <span class="typo-outfit">TOUCH</span></span>
+            </span>
+        </h2>
+        
+        <div class="reveal-mask">
+            <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat reveal-content delay-2">CAMILLERSSEL@GMAIL.COM</a>
+        </div>
         
         <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="cta-btn typo-outfit">
             LINKEDIN <span class="arrow">&rarr;</span>
@@ -461,5 +473,30 @@
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
     </footer>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.15 // Déclenche l'animation dès que 15% de l'élément passe la ligne invisible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animated");
+                        observer.unobserve(entry.target); // Une fois animé, on arrête de l'observer
+                    }
+                });
+            }, observerOptions);
+
+            // On cible tous les contenus cachés sous le masque pour les animer au bon moment
+            const revealElements = document.querySelectorAll(".reveal-content");
+            revealElements.forEach(el => observer.observe(el));
+        });
+    </script>
+
 </body>
 </html>
+
+```
