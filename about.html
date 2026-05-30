@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABOUT — CAMILLE ROUSSEL</title>
     
-    <!-- Importation de la police Outfit via Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
@@ -185,7 +184,7 @@
             opacity: 0.9;
         }
 
-        /* Bouton Back to Top */
+        /* --- BOUTON BACK TO TOP AMÉLIORÉ --- */
         .back-to-top-container {
             display: flex;
             justify-content: flex-end;
@@ -197,16 +196,55 @@
             border: 1px solid #2B1F1D;
             padding: 8px 16px;
             letter-spacing: 1px;
-            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; /* Écart entre le texte et la flèche */
+            transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
         }
 
+        /* On garde l'effet de remplissage foncé au survol */
         .back-to-top-btn:hover {
             background-color: #2B1F1D;
             color: #FAF6F0;
             opacity: 1;
         }
 
-        /* Section Contact (Stay in Touch) */
+        /* Structure de la flèche du haut */
+        .back-to-top-btn .arrow-up {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Au survol, la flèche glisse vers le haut */
+        .back-to-top-btn:hover .arrow-up {
+            transform: translateY(-5px);
+        }
+
+        /* --- BOUTONS EN BAS DE PAGE (LINKEDIN) --- */
+        .cta-btn {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid #2B1F1D;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            opacity: 1;
+        }
+
+        .cta-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .cta-btn:hover .arrow {
+            transform: translateX(6px); 
+        }
+
         .contact-section {
             text-align: center;
             display: flex;
@@ -227,34 +265,6 @@
             letter-spacing: -1px;
         }
 
-        /* --- BOUTON DE TYPE BOUTON D'ACCUEIL (SEE PROJECTS / LINKEDIN) --- */
-        .cta-btn {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            padding-bottom: 6px;
-            border-bottom: 1.5px solid #2B1F1D;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px; /* Espace fixe entre le texte et la flèche */
-            transition: opacity 0.3s ease;
-        }
-
-        .cta-btn:hover {
-            opacity: 1; /* Reste net au survol */
-        }
-
-        /* Animation ciblée sur la flèche */
-        .cta-btn .arrow {
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* Au survol du bouton, on pousse la flèche vers la droite */
-        .cta-btn:hover .arrow {
-            transform: translateX(6px); 
-        }
-
-        /* Ajustement spécifique pour intégrer le bouton dans la section contact */
         .contact-section .cta-btn {
             margin-top: 10px;
         }
@@ -283,7 +293,6 @@
 </head>
 <body id="top">
 
-    <!-- Barre de navigation -->
     <header>
         <a href="index.html" class="logo">
             <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
@@ -297,7 +306,6 @@
         </nav>
     </header>
 
-    <!-- Section Présentation & Photo -->
     <section class="profile-section">
         <div class="profile-image-container">
             <img src="profile.jpg" alt="" onerror="this.style.display='none'">
@@ -317,11 +325,9 @@
         </div>
     </section>
 
-    <!-- Section Expériences -->
     <section class="resume-section">
         <h2 class="section-title typo-coconat">EXPERIENCES</h2>
         <div class="resume-grid">
-            <!-- Ligne 1 -->
             <div class="grid-item">
                 <span class="date typo-outfit">2023 - TODAY</span>
                 <h3 class="item-title typo-outfit">CARRÉ NOIR</h3>
@@ -337,7 +343,6 @@
                 <h3 class="item-title typo-outfit">BETC</h3>
                 <p class="typo-coconat">Assistant AD</p>
             </div>
-            <!-- Ligne 2 -->
             <div class="grid-item">
                 <span class="date typo-outfit">JUNE - SEPT 2020</span>
                 <h3 class="item-title typo-outfit">DRAGON ROUGE</h3>
@@ -353,7 +358,6 @@
                 <h3 class="item-title typo-outfit">LE FIGARO</h3>
                 <p class="typo-coconat">UX/UI Designer<br>(Internship)</p>
             </div>
-            <!-- Ligne 3 -->
             <div class="grid-item">
                 <span class="date typo-outfit">2015</span>
                 <h3 class="item-title typo-outfit">STUDIO BLEU MARINE</h3>
@@ -372,7 +376,6 @@
         </div>
     </section>
 
-    <!-- Section Éducations -->
     <section class="resume-section border-bottom">
         <h2 class="section-title typo-coconat">EDUCATIONS</h2>
         <div class="resume-grid">
@@ -391,23 +394,21 @@
         </div>
     </section>
 
-    <!-- Bouton Retour en haut -->
     <div class="back-to-top-container">
-        <a href="#top" class="back-to-top-btn typo-outfit">BACK TO TOP &uarr;</a>
+        <a href="#top" class="back-to-top-btn typo-outfit">
+            BACK TO TOP <span class="arrow-up">&uarr;</span>
+        </a>
     </div>
 
-    <!-- Section Contact (Footer-CTA) -->
     <section class="contact-section">
         <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
         <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
         
-        <!-- Le bouton Linkedin utilise maintenant la classe cta-btn avec la même animation et même flèche -->
         <a href="#" class="cta-btn typo-outfit">
             LINKEDIN <span class="arrow">&rarr;</span>
         </a>
     </section>
 
-    <!-- Mentions de bas de page -->
     <footer>
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
