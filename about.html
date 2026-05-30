@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT — CAMILLE ROUSSEL</title>
+    
+    <!-- Importation de la police Outfit via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Déclaration de ta police locale Coconat au format WOFF2 */
+        @font-face {
+            font-family: 'Coconat';
+            src: url('Coconat-Regular.woff2') format('woff2'); 
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Styles Globaux basés sur image_2fe0fd.jpg */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Permet un retour en haut de page fluide */
+        }
+
+        body {
+            background-color: #FAF6F0; /* Fond crème */
+            color: #2B1F1D; /* Texte marron foncé */
+            font-family: 'Coconat', serif;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* Liens généraux */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.6;
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Classes de typographies */
+        .typo-coconat {
+            font-family: 'Coconat', serif;
+            font-weight: 400 !important;
+        }
+
+        .typo-outfit {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600 !important;
+            text-transform: uppercase;
+        }
+
+        /* Barre de navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+
+        /* Section Profil (Haut) */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1.2fr 2fr;
+            gap: 80px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        /* Carré noir / Conteneur de la photo */
+        .profile-image-container {
+            width: 100%;
+            aspect-ratio: 1 / 1.1; /* Proportion légèrement verticale comme sur l'image */
+            background-color: #000000; /* Devient le carré noir si aucune image n'est chargée */
+            overflow: hidden;
+        }
+
+        .profile-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-text {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 550px;
+        }
+
+        .profile-text h1 {
+            font-size: 3.5rem;
+            font-weight: normal;
+        }
+
+        .profile-text p {
+            font-size: 1.15rem;
+            line-height: 1.5;
+        }
+
+        /* Structure des sections (Expériences et Éducations) */
+        .resume-section {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            border-top: 1px solid #2B1F1D;
+            padding-top: 40px;
+            padding-bottom: 20px;
+        }
+
+        .resume-section.border-bottom {
+            border-bottom: 1px solid #2B1F1D;
+            padding-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: normal;
+        }
+
+        /* Grilles internes (3 colonnes) */
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px 30px;
+        }
+
+        .grid-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .grid-item .date {
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+        }
+
+        .grid-item h3 {
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            font-weight: normal;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Bouton Back to Top */
+        .back-to-top-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -20px;
+        }
+
+        .back-to-top-btn {
+            font-size: 0.75rem;
+            border: 1px solid #2B1F1D;
+            padding: 8px 16px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top-btn:hover {
+            background-color: #2B1F1D;
+            color: #FAF6F0;
+            opacity: 1;
+        }
+
+        /* Section Contact (Stay in Touch) */
+        .contact-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .contact-section h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .contact-email {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+        }
+
+        .contact-linkedin {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #2B1F1D;
+            padding-bottom: 4px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Footer Tout en bas */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+            padding-top: 20px;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 900px) {
+            body { padding: 30px 20px; gap: 40px; }
+            header { flex-direction: column; gap: 20px; }
+            .profile-section { grid-template-columns: 1fr; gap: 40px; }
+            .resume-section { grid-template-columns: 1fr; gap: 20px; }
+            .resume-grid { grid-template-columns: 1fr; gap: 30px; }
+            .contact-email { font-size: 1.8rem; }
+            footer { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- Barre de navigation -->
+    <header>
+        <a href="index.html" class="logo">
+            <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="projects.html" class="typo-outfit">PROJECTS</a></li>
+                <li><a href="photography.html" class="typo-outfit">PHOTOGRAPHY</a></li>
+                <li><a href="about.html" class="typo-outfit" style="opacity: 0.5;">ABOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Présentation & Photo -->
+    <section class="profile-section">
+        <div class="profile-image-container">
+            <!-- Si profile.jpg n'existe pas encore, le bloc restera un carré noir parfait -->
+            <img src="profile.jpg" alt="" onerror="this.style.display='none'">
+        </div>
+        <div class="profile-text">
+            <h1 class="typo-coconat">HEY <span class="typo-outfit">YOU !</span></h1>
+            <p class="typo-coconat">
+                Art Director based in Paris, I've been working in agencies for 6 years, shaping brands into clear, desirable identities with a strong focus on both branding and digital experiences.
+            </p>
+            <p class="typo-coconat">
+                You can find me at this address : <br>
+                <a href="mailto:camillerssel@gmail.com" class="underline">camillerssel@gmail.com</a>
+            </p>
+            <p class="typo-coconat">
+                Or on <a href="#" class="underline">Linkedin</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Section Expériences -->
+    <section class="resume-section">
+        <h2 class="section-title typo-coconat">EXPERIENCES</h2>
+        <div class="resume-grid">
+            <!-- Ligne 1 -->
+            <div class="grid-item">
+                <span class="date typo-outfit">2023 - TODAY</span>
+                <h3 class="item-title typo-outfit">CARRÉ NOIR</h3>
+                <p class="typo-coconat">Art Director</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">2021 - 2023</span>
+                <h3 class="item-title typo-outfit">COSAVOSTRA</h3>
+                <p class="typo-coconat">Art Director</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">2020 - 2021</span>
+                <h3 class="item-title typo-outfit">BETC</h3>
+                <p class="typo-coconat">Assistant AD</p>
+            </div>
+            <!-- Ligne 2 -->
+            <div class="grid-item">
+                <span class="date typo-outfit">JUNE - SEPT 2020</span>
+                <h3 class="item-title typo-outfit">DRAGON ROUGE</h3>
+                <p class="typo-coconat">Assistant AD<br>(Internship)</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">APRIL - AUGUST 2019</span>
+                <h3 class="item-title typo-outfit">BUILD IN AMSTERDAM</h3>
+                <p class="typo-coconat">Assistant AD<br>(Internship)</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">MAY - AUGUST 2017</span>
+                <h3 class="item-title typo-outfit">LE FIGARO</h3>
+                <p class="typo-coconat">UX/UI Designer<br>(Internship)</p>
+            </div>
+            <!-- Ligne 3 -->
+            <div class="grid-item">
+                <span class="date typo-outfit">2015</span>
+                <h3 class="item-title typo-outfit">STUDIO BLEU MARINE</h3>
+                <p class="typo-coconat">Set Assistant<br>(Internship)</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">MARCH - APRIL 2014</span>
+                <h3 class="item-title typo-outfit">DOCS AD HOC</h3>
+                <p class="typo-coconat">Photo retouching<br>(Internship)</p>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">MARCH 2013</span>
+                <h3 class="item-title typo-outfit">STUDIO BERGOEND</h3>
+                <p class="typo-coconat">Set Assistant<br>(Internship)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Éducations -->
+    <section class="resume-section border-bottom">
+        <h2 class="section-title typo-coconat">EDUCATIONS</h2>
+        <div class="resume-grid">
+            <div class="grid-item">
+                <span class="date typo-outfit">2018 - 2020</span>
+                <h3 class="item-title typo-coconat">MASTER'S DEGREE<br>IN ART DIRECTION</h3>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">2016 - 2020</span>
+                <h3 class="item-title typo-coconat">BACHELOR<br>IN GRAPHIC DESIGN</h3>
+            </div>
+            <div class="grid-item">
+                <span class="date typo-outfit">2012 - 2015</span>
+                <h3 class="item-title typo-coconat">HIGH SCHOOL<br>PHOTOGRAPHY</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bouton Retour en haut -->
+    <div class="back-to-top-container">
+        <a href="#top" class="back-to-top-btn typo-outfit">BACK TO TOP &uarr;</a>
+    </div>
+
+    <!-- Section Contact (Footer-CTA) -->
+    <section class="contact-section">
+        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
+        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+        <a href="#" class="contact-linkedin typo-outfit">LINKEDIN &rsaquo;</a>
+    </section>
+
+    <!-- Mentions de bas de page -->
+    <footer>
+        <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
+        <span class="typo-outfit">MADE WITH LOVE & CODE</span>
+    </footer>
+
+</body>
+</html>
