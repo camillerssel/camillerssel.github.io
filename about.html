@@ -274,14 +274,14 @@
             transform: translateX(6px); 
         }
 
-        /* Footer (Avec espace réduit sous le texte) */
+        /* Footer (Collé au bas de la page) */
         footer {
             display: flex;
             justify-content: space-between;
             font-size: 0.65rem;
             letter-spacing: 0.5px;
             padding-top: 20px;
-            padding-bottom: 10px; /* Réduit l'espace sous le footer */
+            padding-bottom: 0;
         }
 
         /* Responsive Mobile */
@@ -295,7 +295,7 @@
             .section-title { grid-column: auto; grid-row: auto !important; }
             .contact-email { font-size: 1.8rem; line-height: 40px; }
             .contact-section h2 { line-height: 40px; }
-            footer { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 10px; }
+            footer { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 0; }
         }
     </style>
 </head>
