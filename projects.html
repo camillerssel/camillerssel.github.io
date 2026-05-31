@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECTS — CAMILLE ROUSSEL</title>
+    
+    <!-- Importation de la police Outfit via Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Déclaration de ta police locale Coconat */
+        @font-face {
+            font-family: 'Coconat';
+            src: url('Coconat-Regular.woff2') format('woff2'); 
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Styles Globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            background-color: #FAF6F0;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #FAF6F0;
+            color: rgb(43, 31, 29);
+            font-family: 'Coconat', serif;
+            padding: 40px 60px 0px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            text-transform: uppercase;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+
+        /* Liens */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.6;
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Typographies */
+        .typo-coconat {
+            font-family: 'Coconat', serif;
+            font-weight: 400 !important;
+        }
+
+        .typo-outfit {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600 !important;
+        }
+
+        .typo-outfit-light {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300 !important;
+            text-transform: none;
+        }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+
+        /* --- SECTION PROJETS --- */
+        .projects-section {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .project-item {
+            display: grid;
+            grid-template-columns: 1fr 240px;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+        }
+
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .project-content h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+        }
+
+        .project-content p {
+            font-size: 16px;
+            text-transform: none;
+            line-height: 1.4;
+        }
+
+        .project-image {
+            width: 240px;
+            height: 130px;
+            background-color: #D3D3D3;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-item:hover .project-image {
+            opacity: 1;
+        }
+
+        /* --- BACK TO TOP --- */
+        .back-to-top-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: -20px;
+        }
+
+        .back-to-top-btn {
+            font-size: 0.75rem;
+            border: 1px solid rgb(43, 31, 29);
+            border-radius: 4px;
+            padding: 8px 16px;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-to-top-btn:hover {
+            background-color: rgb(43, 31, 29);
+            color: #FAF6F0;
+            opacity: 1;
+        }
+
+        .back-to-top-btn .arrow-up {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .back-to-top-btn:hover .arrow-up {
+            transform: translateY(-5px);
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 60px 0;
+        }
+
+        .contact-section h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 60px;
+        }
+
+        .contact-email {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            line-height: 60px;
+        }
+
+        .cta-btn {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid rgb(43, 31, 29);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            transition: none;
+        }
+
+        .cta-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            opacity: 1;
+        }
+
+        .cta-btn:hover .arrow {
+            transform: translateX(6px); 
+        }
+
+        /* Footer */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            padding-top: 20px;
+            padding-bottom: 0;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 900px) {
+            body { padding: 30px 20px 0px 20px; gap: 40px; }
+            header { flex-direction: column; gap: 20px; }
+            .project-item { grid-template-columns: 1fr; gap: 20px; }
+            .project-content h2 { font-size: 1.8rem; }
+            .project-image { width: 100%; height: 150px; }
+            .contact-email { font-size: 1.8rem; line-height: 40px; }
+            .contact-section h2 { line-height: 40px; }
+            footer { flex-direction: column; gap: 10px; text-align: center; padding-bottom: 0; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- Barre de navigation -->
+    <header>
+        <a href="index.html" class="logo">
+            <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="projects.html" class="typo-outfit">PROJECTS</a></li>
+                <li><a href="photography.html" class="typo-outfit">PHOTOGRAPHY</a></li>
+                <li><a href="about.html" class="typo-outfit">ABOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Section Projets -->
+    <section class="projects-section">
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">BEAUCRENELLE</h2>
+                <p class="typo-outfit-light">A shopping destination where life feels more beautiful</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">VISA</h2>
+                <p class="typo-outfit-light">A B2B payment network where business flows more beautifully</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">VIÑA LOS VASCOS</h2>
+                <p class="typo-outfit-light">A Latin American wine estate, crafted by a dedicated team</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">SANN</h2>
+                <p class="typo-outfit-light">An engage Swiss neuroscience association</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">CARRÉ NOIR</h2>
+                <p class="typo-outfit-light">A branding agency that drive emotional resonance</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+
+        <div class="project-item">
+            <div class="project-content">
+                <h2 class="typo-coconat">MÖVENPICK</h2>
+                <p class="typo-outfit-light">A place to reconnect with yourself and what truly matters</p>
+            </div>
+            <div class="project-image"></div>
+        </div>
+    </section>
+
+    <!-- Bouton Retour en haut -->
+    <div class="back-to-top-container">
+        <a href="#top" class="back-to-top-btn typo-outfit">
+            BACK TO TOP <span class="arrow-up">&uarr;</span>
+        </a>
+    </div>
+
+    <!-- Section Contact -->
+    <section class="contact-section">
+        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
+        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+        
+        <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="cta-btn typo-outfit">
+            LINKEDIN <span class="arrow">&rarr;</span>
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
+        <span class="typo-outfit">MADE WITH LOVE & CODE</span>
+    </footer>
+
+</body>
+</html>
