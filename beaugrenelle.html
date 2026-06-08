@@ -78,12 +78,31 @@
         @keyframes revealUp { to { transform: translateY(0); } }
 
         /* Navigation */
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 80px; }
-        .logo { font-size: 1.2rem; }
-        nav ul { display: flex; list-style: none; gap: 35px; }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
         
         /* Grille Beaugrenelle */
-        .project-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .project-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 20px; }
         .col-span-4 { grid-column: span 4; width: 100%; margin-bottom: 40px; }
         .col-span-2 { grid-column: span 2; }
         
@@ -95,7 +114,9 @@
         .stay-in-touch { font-size: 1.5rem; letter-spacing: 2px; }
         .email { font-size: 3rem; margin-top: 10px; display: block; }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            body { padding: 30px 20px 0px 20px; gap: 40px; }
+            header { flex-direction: column; gap: 20px; }
             .project-grid { grid-template-columns: 1fr; }
             .col-span-2, .col-span-4 { grid-column: span 1; }
         }
