@@ -55,6 +55,11 @@
             opacity: 0.6;
         }
 
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
         /* Typo */
         .typo-coconat {
             font-family: 'Coconat', serif;
@@ -106,19 +111,66 @@
         .col-span-4 { grid-column: span 4; width: 100%; margin-bottom: 40px; }
         .col-span-2 { grid-column: span 2; }
         
-        .project-image { width: 100%; background: #ddd; aspect-ratio: 16/9; }
+        .project-image { 
+            width: 100%; 
+            background-color: #ddd; 
+            aspect-ratio: 16/9; 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Attribution des images */
+        .img-1 { background-image: url('images/projects/beaugrenelle-1.png'); }
+        .img-2 { background-image: url('images/projects/beaugrenelle-2.png'); }
+        .img-3 { background-image: url('images/projects/beaugrenelle-3.png'); }
+        .img-4 { background-image: url('images/projects/beaugrenelle-4.png'); }
+
         .project-description { font-size: 1.2rem; line-height: 1.4; max-width: 600px; margin-bottom: 60px; }
 
-        /* Contact Section */
-        .contact-section { margin-top: 150px; text-align: center; border-top: 1px solid #2B1F1D; padding-top: 60px; }
-        .stay-in-touch { font-size: 1.5rem; letter-spacing: 2px; }
-        .email { font-size: 3rem; margin-top: 10px; display: block; }
+        /* --- CONTACT (Harmonisé avec About) --- */
+        .contact-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 60px 0;
+            border-top: 1px solid rgb(43, 31, 29);
+            padding-top: 60px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 60px;
+        }
+
+        .contact-email {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            line-height: 60px;
+        }
+
+        /* --- FOOTER (Harmonisé avec About) --- */
+        footer.site-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            padding-top: 20px;
+            padding-bottom: 0;
+            text-transform: uppercase;
+        }
 
         @media (max-width: 900px) {
             body { padding: 30px 20px 0px 20px; gap: 40px; }
             header { flex-direction: column; gap: 20px; }
             .project-grid { grid-template-columns: 1fr; }
             .col-span-2, .col-span-4 { grid-column: span 1; }
+            .contact-email { font-size: 1.8rem; line-height: 40px; }
+            .contact-section h2 { line-height: 40px; }
+            footer.site-footer { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
@@ -138,7 +190,7 @@
     </header>
 
     <main class="project-grid">
-        <div class="col-span-4 project-image"></div>
+        <div class="col-span-4 project-image img-1"></div>
         
         <div class="col-span-2 project-description">
             <span class="reveal-mask">
@@ -146,14 +198,19 @@
             </span>
         </div>
         
-        <div class="col-span-4 project-image"></div>
-        <div class="col-span-2 project-image"></div>
-        <div class="col-span-2 project-image"></div>
+        <div class="col-span-4 project-image img-2"></div>
+        <div class="col-span-2 project-image img-3"></div>
+        <div class="col-span-2 project-image img-4"></div>
     </main>
 
-    <footer class="contact-section">
-        <div class="stay-in-touch typo-outfit">STAY IN TOUCH</div>
-        <a href="mailto:camillerssel@gmail.com" class="email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+    <section class="contact-section">
+        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
+        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+    </section>
+
+    <footer class="site-footer">
+        <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
+        <span class="typo-outfit">MADE WITH LOVE & CODE</span>
     </footer>
 
 </body>
