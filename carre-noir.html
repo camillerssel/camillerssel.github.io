@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CARRÉ NOIR — CAMILLE ROUSSEL</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'Coconat';
+            src: url('Coconat-Regular.woff2') format('woff2'); 
+            font-weight: 400; font-style: normal; font-display: swap;
+        }
+
+        /* Styles Globaux */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: #FAF6F0;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: #FAF6F0;
+            color: rgb(43, 31, 29);
+            font-family: 'Coconat', serif;
+            padding: 40px 60px 0px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            text-transform: uppercase;
+            min-height: 100vh;
+            justify-content: space-between;
+        }
+
+        /* Liens */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: opacity 0.3s ease;
+        }
+
+        a:hover {
+            opacity: 0.6;
+        }
+
+        .underline {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* Typo */
+        .typo-coconat {
+            font-family: 'Coconat', serif;
+            font-weight: 400 !important;
+        }
+
+        .typo-outfit {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600 !important;
+        }
+        
+        .typo-outfit-light {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 300 !important;
+            text-transform: none;
+        }
+
+        /* Reveal Animation */
+        .reveal-mask { display: block; overflow: hidden; }
+        .reveal-content { display: inline-block; transform: translateY(115%); animation: revealUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes revealUp { to { transform: translateY(0); } }
+
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+        }
+        
+        /* Grille Projet */
+        .project-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 20px; }
+        .col-span-4 { grid-column: span 4; width: 100%; margin-bottom: 40px; }
+        .col-span-2 { grid-column: span 2; }
+        
+        .project-image { 
+            width: 100%; 
+            background-color: #ddd; 
+            aspect-ratio: 16/9; 
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Attribution des images */
+        .img-1 { background-image: url('images/projects/carre-noir.png'); }
+
+        .project-description { font-size: 1.2rem; line-height: 1.4; max-width: 600px; margin-bottom: 60px; }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 60px 0;
+            border-top: 1px solid rgb(43, 31, 29);
+            padding-top: 60px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.8rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+            line-height: 60px;
+        }
+
+        .contact-email {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            line-height: 60px;
+        }
+
+        /* --- FOOTER --- */
+        footer.site-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            padding-top: 20px;
+            padding-bottom: 0;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 900px) {
+            body { padding: 30px 20px 0px 20px; gap: 40px; }
+            header { flex-direction: column; gap: 20px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .col-span-2, .col-span-4 { grid-column: span 1; }
+            .contact-email { font-size: 1.8rem; line-height: 40px; }
+            .contact-section h2 { line-height: 40px; }
+            footer.site-footer { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="projects.html" class="typo-outfit">PROJECTS</a></li>
+                <li><a href="photography.html" class="typo-outfit">PHOTOGRAPHY</a></li>
+                <li><a href="about.html" class="typo-outfit">ABOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="project-grid">
+        <div class="col-span-4 project-image img-1"></div>
+        
+        <div class="col-span-2 project-description">
+            <span class="reveal-mask">
+                <span class="reveal-content">Designed impactful brand assets and visual systems at Carré Noir, a leading branding agency that drives emotional resonance and consumer engagement for iconic brands.</span>
+            </span>
+        </div>
+    </main>
+
+    <section class="contact-section">
+        <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
+        <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+    </section>
+
+    <footer class="site-footer">
+        <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
+        <span class="typo-outfit">MADE WITH LOVE & CODE</span>
+    </footer>
+
+</body>
+</html>
