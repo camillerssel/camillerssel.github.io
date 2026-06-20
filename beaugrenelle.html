@@ -38,10 +38,9 @@
             padding: 40px 60px 0px 60px;
             display: flex;
             flex-direction: column;
-            gap: 60px;
+            gap: 0;
             text-transform: uppercase;
             min-height: 100vh;
-            justify-content: space-between;
         }
 
         /* Liens */
@@ -88,6 +87,7 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            margin-bottom: 40px;
         }
 
         .logo {
@@ -105,36 +105,191 @@
             font-size: 0.85rem;
             letter-spacing: 1.5px;
         }
-        
-        /* Grille Beaugrenelle */
-        .project-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 20px; }
-        .col-span-4 { grid-column: span 4; width: 100%; margin-bottom: 40px; }
-        .col-span-2 { grid-column: span 2; }
-        
-        .project-image { 
-            width: 100%; 
-            background-color: #ddd; 
-            aspect-ratio: 16/9; 
+
+        /* ============================
+           PROJECT CONTENT
+           ============================ */
+
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- Hero image (full width, tall) --- */
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #D3D3D3;
             background-size: cover;
             background-position: center;
         }
 
-        /* Attribution des images */
-        .img-1 { background-image: url('images/projects/beaugrenelle-1.png'); }
-        .img-2 { background-image: url('images/projects/beaugrenelle-2.png'); }
-        .img-3 { background-image: url('images/projects/beaugrenelle-3.png'); }
-        .img-4 { background-image: url('images/projects/beaugrenelle-4.png'); }
+        /* --- Info + Description row --- */
+        .project-info-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            padding: 40px 0 50px 0;
+        }
 
-        .project-description { font-size: 1.2rem; line-height: 1.4; max-width: 600px; margin-bottom: 60px; }
+        .project-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-        /* --- CONTACT (Harmonisé avec About) --- */
+        .project-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .project-meta-label {
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            opacity: 0.5;
+        }
+
+        .project-meta-value {
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .project-description {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            text-transform: none;
+            max-width: 560px;
+        }
+
+        /* --- Image grid --- */
+        .image-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .image-row {
+            display: grid;
+            gap: 20px;
+        }
+
+        .image-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .image-row.half {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            background-color: #D3D3D3;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Aspect ratios for different image types */
+        .image-placeholder.landscape {
+            aspect-ratio: 16 / 9;
+        }
+
+        .image-placeholder.square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .image-placeholder.panoramic {
+            aspect-ratio: 3 / 1;
+        }
+
+        /* ============================
+           OTHER PROJECTS SECTION
+           ============================ */
+
+        .other-projects-section {
+            margin-top: 80px;
+            padding-top: 40px;
+            border-top: 1px solid rgb(43, 31, 29);
+        }
+
+        .other-projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .other-projects-header h3 {
+            font-size: 0.85rem;
+            font-weight: normal;
+            letter-spacing: 1.5px;
+        }
+
+        .more-link {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            border: 1px solid rgb(43, 31, 29);
+            border-radius: 4px;
+            padding: 6px 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .more-link:hover {
+            background-color: rgb(43, 31, 29);
+            color: #FAF6F0;
+            opacity: 1;
+        }
+
+        .other-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .other-project-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .other-project-card:hover {
+            opacity: 1;
+        }
+
+        .other-project-thumb {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background-color: #D3D3D3;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .other-project-card h4 {
+            font-size: 0.75rem;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        .other-project-card p {
+            font-size: 0.7rem;
+            text-transform: none;
+            line-height: 1.3;
+            opacity: 0.6;
+        }
+
+        /* ============================
+           CONTACT
+           ============================ */
         .contact-section {
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            margin: 60px 0;
+            margin: 80px 0 60px 0;
             border-top: 1px solid rgb(43, 31, 29);
             padding-top: 60px;
         }
@@ -152,7 +307,34 @@
             line-height: 60px;
         }
 
-        /* --- FOOTER (Harmonisé avec About) --- */
+        .cta-btn {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            padding-bottom: 6px;
+            border-bottom: 1.5px solid rgb(43, 31, 29);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            transition: none;
+        }
+
+        .cta-btn .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            opacity: 1;
+        }
+
+        .cta-btn:hover .arrow {
+            transform: translateX(6px); 
+        }
+
+        /* ============================
+           FOOTER
+           ============================ */
         footer.site-footer {
             display: flex;
             justify-content: space-between;
@@ -163,11 +345,15 @@
             text-transform: uppercase;
         }
 
+        /* ============================
+           RESPONSIVE
+           ============================ */
         @media (max-width: 900px) {
-            body { padding: 30px 20px 0px 20px; gap: 40px; }
+            body { padding: 30px 20px 0px 20px; }
             header { flex-direction: column; gap: 20px; }
-            .project-grid { grid-template-columns: 1fr; }
-            .col-span-2, .col-span-4 { grid-column: span 1; }
+            .project-info-row { grid-template-columns: 1fr; gap: 20px; padding: 30px 0; }
+            .image-row.half { grid-template-columns: 1fr; }
+            .other-projects-grid { grid-template-columns: 1fr; }
             .contact-email { font-size: 1.8rem; line-height: 40px; }
             .contact-section h2 { line-height: 40px; }
             footer.site-footer { flex-direction: column; gap: 10px; text-align: center; }
@@ -176,6 +362,7 @@
 </head>
 <body>
 
+    <!-- Navigation -->
     <header>
         <a href="index.html" class="logo">
             <span class="typo-coconat">CAMILLE</span> <span class="typo-outfit">ROUSSEL</span>
@@ -189,25 +376,109 @@
         </nav>
     </header>
 
-    <main class="project-grid">
-        <div class="col-span-4 project-image img-1"></div>
-        
-        <div class="col-span-2 project-description">
-            <span class="reveal-mask">
-                <span class="reveal-content">Defined a new visual territory for Beaugrenelle, expressing it across social media content, editorial guidelines, reels, and the brand's latest campaign.</span>
-            </span>
+    <!-- Project Content -->
+    <main class="project-content">
+
+        <!-- 1. Hero Image (full width) -->
+        <div class="hero-image"></div>
+
+        <!-- 2. Info + Description -->
+        <div class="project-info-row">
+            <div class="project-meta">
+                <div class="project-meta-item">
+                    <span class="project-meta-label typo-outfit">CLIENT</span>
+                    <span class="project-meta-value typo-outfit-light">Beaugrenelle Paris</span>
+                </div>
+                <div class="project-meta-item">
+                    <span class="project-meta-label typo-outfit">YEAR</span>
+                    <span class="project-meta-value typo-outfit-light">2024</span>
+                </div>
+                <div class="project-meta-item">
+                    <span class="project-meta-label typo-outfit">ROLE</span>
+                    <span class="project-meta-value typo-outfit-light">Art Direction</span>
+                </div>
+            </div>
+            <div class="project-description typo-outfit-light">
+                <span class="reveal-mask">
+                    <span class="reveal-content">Defined a new visual territory for Beaugrenelle, expressing it across social media content, editorial guidelines, reels, and the brand's latest campaign.</span>
+                </span>
+            </div>
         </div>
-        
-        <div class="col-span-4 project-image img-2"></div>
-        <div class="col-span-2 project-image img-3"></div>
-        <div class="col-span-2 project-image img-4"></div>
+
+        <!-- 3. Image Grid -->
+        <div class="image-grid">
+
+            <!-- Row 1: full-width landscape -->
+            <div class="image-row full">
+                <div class="image-placeholder landscape"></div>
+            </div>
+
+            <!-- Row 2: two side-by-side squares -->
+            <div class="image-row half">
+                <div class="image-placeholder square"></div>
+                <div class="image-placeholder square"></div>
+            </div>
+
+            <!-- Row 3: two side-by-side squares -->
+            <div class="image-row half">
+                <div class="image-placeholder square"></div>
+                <div class="image-placeholder square"></div>
+            </div>
+
+            <!-- Row 4: full-width panoramic -->
+            <div class="image-row full">
+                <div class="image-placeholder panoramic"></div>
+            </div>
+
+            <!-- Row 5: two side-by-side squares -->
+            <div class="image-row half">
+                <div class="image-placeholder square"></div>
+                <div class="image-placeholder square"></div>
+            </div>
+
+            <!-- Row 6: full-width panoramic (social media grid) -->
+            <div class="image-row full">
+                <div class="image-placeholder panoramic"></div>
+            </div>
+
+        </div>
     </main>
 
+    <!-- Other Projects Section -->
+    <section class="other-projects-section">
+        <div class="other-projects-header">
+            <h3><span class="typo-coconat">OTHER</span> <span class="typo-outfit">PROJECTS</span></h3>
+            <a href="projects.html" class="more-link typo-outfit">MORE &rarr;</a>
+        </div>
+        <div class="other-projects-grid">
+            <a href="sann.html" class="other-project-card">
+                <div class="other-project-thumb"></div>
+                <h4 class="typo-coconat">SANN</h4>
+                <p class="typo-outfit-light">An engaged Swiss neuroscience association</p>
+            </a>
+            <a href="carre-noir.html" class="other-project-card">
+                <div class="other-project-thumb"></div>
+                <h4 class="typo-coconat">CARRÉ NOIR</h4>
+                <p class="typo-outfit-light">A branding agency that drives emotional resonance</p>
+            </a>
+            <a href="movenpick.html" class="other-project-card">
+                <div class="other-project-thumb"></div>
+                <h4 class="typo-coconat">MÖVENPICK</h4>
+                <p class="typo-outfit-light">A place to reconnect with yourself and what truly matters</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="contact-section">
         <h2 class="typo-coconat">STAY IN <span class="typo-outfit">TOUCH</span></h2>
         <a href="mailto:camillerssel@gmail.com" class="contact-email typo-coconat">CAMILLERSSEL@GMAIL.COM</a>
+        <a href="https://www.linkedin.com/in/camilleroussel-gd/" target="_blank" class="cta-btn typo-outfit">
+            LINKEDIN <span class="arrow">&rarr;</span>
+        </a>
     </section>
 
+    <!-- Footer -->
     <footer class="site-footer">
         <span class="typo-outfit">&copy;2026 CAMILLE ROUSSEL. ALL RIGHTS RESERVED.</span>
         <span class="typo-outfit">MADE WITH LOVE & CODE</span>
